@@ -77,10 +77,10 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
     {sections.map((s, i) => (
       <section class="grid items-center gap-10 border-t border-line py-20 first:border-t-0 md:grid-cols-2 md:gap-16 md:py-28">
         <div class={i % 2 === 1 ? 'md:order-2' : ''}>
-          <p class="eyebrow reveal">{s.eyebrow}</p>
-          <h2 class="reveal d1 mt-4 text-[2.2rem] md:text-[2.9rem]">{s.title} <span class="fade-tail">{s.tail}</span></h2>
-          <p class="reveal d2 mt-5 max-w-lg text-muted">{s.body}</p>
-          <ul class="reveal d3 mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+          <p class="eyebrow">{s.eyebrow}</p>
+          <h2 class="mt-4 text-[2.2rem] md:text-[2.9rem]">{s.title} <span class="fade-tail">{s.tail}</span></h2>
+          <p class="mt-5 max-w-lg text-muted">{s.body}</p>
+          <ul class="mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
             {s.checks.map((c) => (
               <li class="flex items-center gap-3 text-[0.97rem]">
                 <span class="check"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" set:html={tick} /></span>{c}
@@ -88,7 +88,7 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
             ))}
           </ul>
         </div>
-        <div class={`reveal d2 ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+        <div class={`${i % 2 === 1 ? 'md:order-1' : ''}`}>
           <div class="card spot relative overflow-hidden p-5 md:p-8">
             <Beams intensity={0.5} />
             {s.mock === 'phone'

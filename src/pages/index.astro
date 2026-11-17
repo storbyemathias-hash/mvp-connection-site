@@ -1,4 +1,4 @@
-﻿---
+---
 import Base from '../layouts/Base.astro';
 import Beams from '../components/Beams.astro';
 import ChromeLogo3D from '../components/ChromeLogo3D.astro';
@@ -83,7 +83,7 @@ const steps = [
   <section class="wrap py-20 md:py-28">
     <div class="grid divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
       {facts.map((f, i) => (
-        <div class={`reveal d${i + 1} px-4 py-8 text-center md:py-2`}>
+        <div class={`px-4 py-8 text-center md:py-2`}>
           <p class="silver text-5xl font-semibold tracking-[-0.04em] md:text-6xl">{f.big}</p>
           <p class="mx-auto mt-3 max-w-[15rem] text-muted">{f.small}</p>
         </div>
@@ -94,39 +94,39 @@ const steps = [
   <!-- FEATURES BENTO -->
   <section class="wrap py-10 md:py-16">
     <div class="text-center">
-      <p class="eyebrow reveal">Features</p>
-      <h2 class="reveal d1 mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Everything that wins the job, <span class="fade-tail">handled for you</span></h2>
+      <p class="eyebrow">Features</p>
+      <h2 class="mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Everything that wins the job, <span class="fade-tail">handled for you</span></h2>
     </div>
     <div class="mt-14 grid gap-4 md:grid-cols-2">
-      <article class="card spot reveal overflow-hidden p-6 md:p-8">
+      <article class="card spot overflow-hidden p-6 md:p-8">
         <h3 class="text-[1.35rem]">Missed-call text-back</h3>
         <p class="mt-2 max-w-sm text-muted">Every missed call gets a text from your shop right away, so the job doesn't go to the next number on Google.</p>
         <Mock kind="missed" class="mt-7" />
       </article>
-      <article class="card spot reveal d1 overflow-hidden p-6 md:p-8">
+      <article class="card spot overflow-hidden p-6 md:p-8">
         <h3 class="text-[1.35rem]">45-day review collection</h3>
         <p class="mt-2 max-w-sm text-muted">After each job, customers get a friendly ask for a Google review, plus a few polite reminders.</p>
         <Mock kind="reviews" class="mt-7" />
       </article>
     </div>
     <div class="mt-4 grid gap-4 md:grid-cols-3">
-      <article class="card spot reveal overflow-hidden p-6">
+      <article class="card spot overflow-hidden p-6">
         <h3 class="text-[1.15rem]">Retention follow-up</h3>
         <p class="mt-2 text-[0.95rem] text-muted">Seasonal check-ins bring past customers back.</p>
         <Mock kind="followup" class="mt-6" />
       </article>
-      <article class="card spot reveal d1 overflow-hidden p-6">
+      <article class="card spot overflow-hidden p-6">
         <h3 class="text-[1.15rem]">Your website, included</h3>
         <p class="mt-2 text-[0.95rem] text-muted">A fast site for your shop on both plans.</p>
         <Mock kind="website" class="mt-6" />
       </article>
-      <article class="card spot reveal d2 overflow-hidden p-6">
+      <article class="card spot overflow-hidden p-6">
         <h3 class="text-[1.15rem]">Leads on your phone</h3>
         <p class="mt-2 text-[0.95rem] text-muted">No app to learn. It all shows up as texts.</p>
         <Mock kind="notify" class="mt-6" />
       </article>
     </div>
-    <div class="mt-10 text-center reveal">
+    <div class="mt-10 text-center">
       <a href="/features" class="btn btn-dark">See all features
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
       </a>
@@ -137,13 +137,13 @@ const steps = [
   <section class="wrap py-24 md:py-32">
     <div class="grid gap-12 md:grid-cols-2 md:gap-16">
       <div class="md:sticky md:top-28 md:self-start">
-        <p class="eyebrow reveal">Who it's for</p>
-        <h2 class="reveal d1 mt-4 text-4xl md:text-[3.1rem]">For shops that <span class="fade-tail">can't stop to answer</span></h2>
-        <p class="reveal d2 mt-5 max-w-md text-muted">You do the work with your hands. We make sure the phone doesn't cost you jobs while you do it.</p>
+        <p class="eyebrow">Who it's for</p>
+        <h2 class="mt-4 text-4xl md:text-[3.1rem]">For shops that <span class="fade-tail">can't stop to answer</span></h2>
+        <p class="mt-5 max-w-md text-muted">You do the work with your hands. We make sure the phone doesn't cost you jobs while you do it.</p>
       </div>
       <ul class="grid gap-3">
         {useCases.map((u, i) => (
-          <li class={`card spot reveal d${i + 1} flex gap-5 p-5 md:p-6`}>
+          <li class={`card spot flex gap-5 p-5 md:p-6`}>
             <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-b from-[#2a2a2e] to-[#121214] shadow-[inset_0_1px_0_rgb(255_255_255/.14),inset_0_0_0_1px_rgb(255_255_255/.06)]">
               <svg class="h-5 w-5 text-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={u.icon} />
             </span>
@@ -157,18 +157,18 @@ const steps = [
   <!-- HOW IT ALL COMES TOGETHER -->
   <section class="relative py-10 md:py-16">
     <div class="wrap text-center">
-      <p class="eyebrow reveal">How it works</p>
-      <h2 class="reveal d1 mt-4 text-4xl md:text-[3.25rem]">How it all comes together</h2>
-      <p class="reveal d2 mx-auto mt-4 max-w-xl text-muted">Missed calls become texts, texts become booked jobs, and booked jobs become reviews. You just see the results.</p>
+      <p class="eyebrow">How it works</p>
+      <h2 class="mt-4 text-4xl md:text-[3.25rem]">How it all comes together</h2>
+      <p class="mx-auto mt-4 max-w-xl text-muted">Missed calls become texts, texts become booked jobs, and booked jobs become reviews. You just see the results.</p>
     </div>
     <div class="wrap relative mt-12">
-      <div class="card reveal relative overflow-hidden p-3 md:p-10">
+      <div class="card relative overflow-hidden p-3 md:p-10">
         <Beams intensity={0.7} />
         <Mock kind="leads" class="relative" />
       </div>
       <ol class="mt-4 grid gap-4 md:grid-cols-3">
         {steps.map((s, i) => (
-          <li class={`card reveal d${i + 1} p-6`}>
+          <li class={`card p-6`}>
             <p class="text-[0.95rem] font-semibold"><span class="text-accent">{s.n}.</span> {s.t}</p>
             <p class="mt-2 text-[0.95rem] text-muted">{s.d}</p>
           </li>
@@ -180,12 +180,12 @@ const steps = [
   <!-- PRICING TEASER -->
   <section class="wrap py-24 md:py-32">
     <div class="text-center">
-      <p class="eyebrow reveal">Pricing</p>
-      <h2 class="reveal d1 mt-4 text-4xl md:text-[3.25rem]">Two plans. <span class="fade-tail">Website included.</span></h2>
+      <p class="eyebrow">Pricing</p>
+      <h2 class="mt-4 text-4xl md:text-[3.25rem]">Two plans. <span class="fade-tail">Website included.</span></h2>
     </div>
     <div class="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-2">
       {PLANS.map((p, i) => (
-        <a href="/pricing" class={`card spot reveal d${i + 1} group block p-7 transition-transform duration-300 hover:-translate-y-1`}>
+        <a href="/pricing" class={`card spot group block p-7 transition-transform duration-300 hover:-translate-y-1`}>
           <div class="flex items-center justify-between">
             <p class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-muted">{p.name}</p>
             {p.featured && <span class="chip bg-accent text-on-accent">Recommended</span>}

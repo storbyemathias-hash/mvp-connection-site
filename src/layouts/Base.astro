@@ -170,12 +170,6 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
         }).observe(mainCta);
       }
 
-      const io = new IntersectionObserver(
-        (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
-        { rootMargin: '0px 0px -10% 0px' },
-      );
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
       // Cursor spotlight on cards.
       if (matchMedia('(hover: hover)').matches) {
         document.addEventListener('pointermove', (e) => {

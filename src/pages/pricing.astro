@@ -27,7 +27,7 @@ const offerSchema = {
   <section class="wrap pb-10">
     <div class="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
       {PLANS.map((p, i) => (
-        <article class={`card spot reveal d${i + 1} flex flex-col p-7 md:p-9 ${p.featured ? 'featured' : ''}`}>
+        <article class={`card spot flex flex-col p-7 md:p-9 ${p.featured ? 'featured' : ''}`}>
           <div class="flex items-center justify-between">
             <p class="text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-muted">{p.name}</p>
             {p.featured && <span class="chip bg-accent text-on-accent">Recommended</span>}
@@ -43,16 +43,16 @@ const offerSchema = {
         </article>
       ))}
     </div>
-    <p class="reveal mt-6 text-center text-[0.9rem] text-dim">Prices in USD, billed monthly. Cancel anytime.</p>
+    <p class="mt-6 text-center text-[0.9rem] text-dim">Prices in USD, billed monthly. Cancel anytime.</p>
   </section>
 
   <!-- COMPARISON TABLE (reference-style "Yes" table) -->
   <section class="wrap py-20 md:py-28">
     <div class="text-center">
-      <p class="eyebrow reveal">Compare</p>
-      <h2 class="reveal d1 mt-4 text-4xl md:text-[3rem]">What's in <span class="fade-tail">each plan</span></h2>
+      <p class="eyebrow">Compare</p>
+      <h2 class="mt-4 text-4xl md:text-[3rem]">What's in <span class="fade-tail">each plan</span></h2>
     </div>
-    <div class="card reveal relative mx-auto mt-12 max-w-4xl overflow-hidden p-2 md:p-6">
+    <div class="card relative mx-auto mt-12 max-w-4xl overflow-hidden p-2 md:p-6">
       <Beams intensity={0.5} />
       <table class="relative w-full text-left text-[0.95rem]">
         <thead>

@@ -157,12 +157,6 @@
     border-radius: 1rem; padding: 1.25rem; font-size: .95rem;
   }
 
-  /* Scroll reveal */
-  .reveal { opacity: 0; transform: translateY(24px); filter: blur(6px);
-    transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1), filter .9s; }
-  .reveal.in { opacity: 1; transform: none; filter: none; }
-  .d1 { transition-delay: .08s; } .d2 { transition-delay: .16s; } .d3 { transition-delay: .24s; } .d4 { transition-delay: .32s; }
-
   .prose-legal h2 { font-size: 1.35rem; margin: 2.25rem 0 .6rem; }
   .prose-legal h3 { font-size: 1.05rem; margin: 1.5rem 0 .4rem; }
   .prose-legal p, .prose-legal li { color: #c4c4c9; margin: .6rem 0; }
@@ -172,9 +166,6 @@
   .prose-legal b { color: #fff; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
-}
 @media (prefers-contrast: more) {
   :root { --color-muted: #c4c4c9; --color-dim: #a0a0a6; --color-line: #3a3a3f; --color-line-2: #4a4a50; }
 }

@@ -1,0 +1,250 @@
+﻿---
+import Base from '../layouts/Base.astro';
+import Beams from '../components/Beams.astro';
+import ChromeLogo3D from '../components/ChromeLogo3D.astro';
+import PhoneDemo from '../components/PhoneDemo.astro';
+import Mock from '../components/Mock.astro';
+import Faq from '../components/Faq.astro';
+import CtaCard from '../components/CtaCard.astro';
+import { SITE, PILOT, PLANS, FAQ, TESTIMONIALS } from '../config';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+
+const facts = [
+  { big: 'Seconds', small: 'to text a missed caller back, day or night' },
+  { big: '45 days', small: 'of polite review requests after each job' },
+  { big: '14 days', small: 'free on either plan. We do the setup' },
+];
+
+const useCases = [
+  { t: 'Plumbing shops', d: 'You are under a sink when the phone rings. The caller still hears from you right away.', icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>' },
+  { t: 'HVAC companies', d: 'Busy season means missed calls. Every one of them gets a reply and a way to book.', icon: '<path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>' },
+  { t: 'Owner-operators', d: 'No office staff? It works like a front desk that never takes a lunch break.', icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>' },
+  { t: 'Small crews', d: 'Leads land on your phone, so whoever is free can call back and book.', icon: '<circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0M12 20a6 6 0 0 1 10 0"/>' },
+];
+
+const steps = [
+  { n: '01', t: 'We set it up', d: 'One short call. We connect your line and write the texts with you.' },
+  { n: '02', t: 'A call gets missed', d: 'The caller gets a text from your shop within seconds.' },
+  { n: '03', t: 'You book the job', d: 'Their reply lands on your phone. Text back when you can.' },
+];
+---
+<Base schema={[faqSchema]} mainCta>
+  <!-- HERO -->
+  <section class="relative overflow-hidden pt-24 md:pt-28">
+    <Beams />
+    <div class="wrap relative grid items-center gap-2 md:grid-cols-[1.1fr_.9fr] md:gap-8">
+      <div class="order-2 md:order-1">
+        <p class="eyebrow hero-in">Built for plumbing &amp; HVAC shops</p>
+        <h1 class="hero-in d1 mt-5 text-[2.6rem] sm:text-6xl lg:text-[4.4rem]">
+          Every missed call, <span class="text-accent">texted back</span> <span class="fade-tail">in seconds</span>
+        </h1>
+        <p class="hero-in d2 mt-6 max-w-lg text-[1.1rem] text-muted">
+          When you can't pick up, we text the caller right away, so they wait for you instead of calling the next shop. We set it all up. You keep working.
+        </p>
+        <div class="hero-in d3 mt-8 flex flex-wrap gap-3">
+          <a href="/book" data-goal="Book Click" data-main-cta class="btn btn-accent">Book a 15-minute call</a>
+          <a href="/pricing" class="btn btn-dark">See pricing</a>
+        </div>
+        <p class="hero-in d4 mt-6 text-[0.9rem] text-dim">{PILOT.headline} · Keep your number · Website included</p>
+      </div>
+      <div class="order-1 md:order-2">
+        <ChromeLogo3D class="mx-auto aspect-square w-[min(78vw,20rem)] md:w-full md:max-w-[34rem]" />
+      </div>
+    </div>
+
+    <!-- The device: a phone instead of a desktop screenshot -->
+    <div class="wrap relative mt-10 md:mt-6">
+      <div class="device-stage relative mx-auto max-w-4xl" style="perspective:1400px">
+        <div class="device" data-tilt>
+          <PhoneDemo />
+        </div>
+        <div class="float-card float-l absolute left-0 top-24 hidden w-64 lg:block">
+          <div class="card p-4">
+            <div class="flex items-center justify-between text-[0.8rem]"><b class="font-semibold">Missed call</b><span class="chip chip-miss">2:14 PM</span></div>
+            <p class="mt-2 text-[0.85rem] text-muted">Auto-text sent in 4 seconds. Caller is typing…</p>
+          </div>
+        </div>
+        <div class="float-card float-r absolute right-0 top-64 hidden w-64 lg:block">
+          <div class="card p-4">
+            <div class="flex items-center justify-between text-[0.8rem]"><b class="font-semibold">Job booked</b><span class="chip chip-ok">Today 2-4</span></div>
+            <p class="mt-2 text-[0.85rem] text-muted">Review request goes out after the job. Nothing for you to do.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACTS (no invented statistics: these describe the service) -->
+  <section class="wrap py-20 md:py-28">
+    <div class="grid divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
+      {facts.map((f, i) => (
+        <div class={`reveal d${i + 1} px-4 py-8 text-center md:py-2`}>
+          <p class="silver text-5xl font-semibold tracking-[-0.04em] md:text-6xl">{f.big}</p>
+          <p class="mx-auto mt-3 max-w-[15rem] text-muted">{f.small}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FEATURES BENTO -->
+  <section class="wrap py-10 md:py-16">
+    <div class="text-center">
+      <p class="eyebrow reveal">Features</p>
+      <h2 class="reveal d1 mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Everything that wins the job, <span class="fade-tail">handled for you</span></h2>
+    </div>
+    <div class="mt-14 grid gap-4 md:grid-cols-2">
+      <article class="card spot reveal overflow-hidden p-6 md:p-8">
+        <h3 class="text-[1.35rem]">Missed-call text-back</h3>
+        <p class="mt-2 max-w-sm text-muted">Every missed call gets a text from your shop right away, so the job doesn't go to the next number on Google.</p>
+        <Mock kind="missed" class="mt-7" />
+      </article>
+      <article class="card spot reveal d1 overflow-hidden p-6 md:p-8">
+        <h3 class="text-[1.35rem]">45-day review collection</h3>
+        <p class="mt-2 max-w-sm text-muted">After each job, customers get a friendly ask for a Google review, plus a few polite reminders.</p>
+        <Mock kind="reviews" class="mt-7" />
+      </article>
+    </div>
+    <div class="mt-4 grid gap-4 md:grid-cols-3">
+      <article class="card spot reveal overflow-hidden p-6">
+        <h3 class="text-[1.15rem]">Retention follow-up</h3>
+        <p class="mt-2 text-[0.95rem] text-muted">Seasonal check-ins bring past customers back.</p>
+        <Mock kind="followup" class="mt-6" />
+      </article>
+      <article class="card spot reveal d1 overflow-hidden p-6">
+        <h3 class="text-[1.15rem]">Your website, included</h3>
+        <p class="mt-2 text-[0.95rem] text-muted">A fast site for your shop on both plans.</p>
+        <Mock kind="website" class="mt-6" />
+      </article>
+      <article class="card spot reveal d2 overflow-hidden p-6">
+        <h3 class="text-[1.15rem]">Leads on your phone</h3>
+        <p class="mt-2 text-[0.95rem] text-muted">No app to learn. It all shows up as texts.</p>
+        <Mock kind="notify" class="mt-6" />
+      </article>
+    </div>
+    <div class="mt-10 text-center reveal">
+      <a href="/features" class="btn btn-dark">See all features
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- USE CASE -->
+  <section class="wrap py-24 md:py-32">
+    <div class="grid gap-12 md:grid-cols-2 md:gap-16">
+      <div class="md:sticky md:top-28 md:self-start">
+        <p class="eyebrow reveal">Who it's for</p>
+        <h2 class="reveal d1 mt-4 text-4xl md:text-[3.1rem]">For shops that <span class="fade-tail">can't stop to answer</span></h2>
+        <p class="reveal d2 mt-5 max-w-md text-muted">You do the work with your hands. We make sure the phone doesn't cost you jobs while you do it.</p>
+      </div>
+      <ul class="grid gap-3">
+        {useCases.map((u, i) => (
+          <li class={`card spot reveal d${i + 1} flex gap-5 p-5 md:p-6`}>
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-b from-[#2a2a2e] to-[#121214] shadow-[inset_0_1px_0_rgb(255_255_255/.14),inset_0_0_0_1px_rgb(255_255_255/.06)]">
+              <svg class="h-5 w-5 text-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={u.icon} />
+            </span>
+            <div><h3 class="text-[1.12rem]">{u.t}</h3><p class="mt-1 text-[0.95rem] text-muted">{u.d}</p></div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- HOW IT ALL COMES TOGETHER -->
+  <section class="relative py-10 md:py-16">
+    <div class="wrap text-center">
+      <p class="eyebrow reveal">How it works</p>
+      <h2 class="reveal d1 mt-4 text-4xl md:text-[3.25rem]">How it all comes together</h2>
+      <p class="reveal d2 mx-auto mt-4 max-w-xl text-muted">Missed calls become texts, texts become booked jobs, and booked jobs become reviews. You just see the results.</p>
+    </div>
+    <div class="wrap relative mt-12">
+      <div class="card reveal relative overflow-hidden p-3 md:p-10">
+        <Beams intensity={0.7} />
+        <Mock kind="leads" class="relative" />
+      </div>
+      <ol class="mt-4 grid gap-4 md:grid-cols-3">
+        {steps.map((s, i) => (
+          <li class={`card reveal d${i + 1} p-6`}>
+            <p class="text-[0.95rem] font-semibold"><span class="text-accent">{s.n}.</span> {s.t}</p>
+            <p class="mt-2 text-[0.95rem] text-muted">{s.d}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- PRICING TEASER -->
+  <section class="wrap py-24 md:py-32">
+    <div class="text-center">
+      <p class="eyebrow reveal">Pricing</p>
+      <h2 class="reveal d1 mt-4 text-4xl md:text-[3.25rem]">Two plans. <span class="fade-tail">Website included.</span></h2>
+    </div>
+    <div class="mx-auto mt-12 grid max-w-4xl gap-4 md:grid-cols-2">
+      {PLANS.map((p, i) => (
+        <a href="/pricing" class={`card spot reveal d${i + 1} group block p-7 transition-transform duration-300 hover:-translate-y-1`}>
+          <div class="flex items-center justify-between">
+            <p class="text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-muted">{p.name}</p>
+            {p.featured && <span class="chip bg-accent text-on-accent">Recommended</span>}
+          </div>
+          <p class="mt-4"><span class="text-5xl font-semibold tracking-[-0.04em]">${p.price}</span> <span class="text-muted">/ month</span></p>
+          <p class="mt-3 text-muted">{p.pitch}</p>
+          <p class="mt-6 inline-flex items-center gap-1.5 text-[0.95rem] font-medium">Compare plans <span class="transition-transform group-hover:translate-x-1">→</span></p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {TESTIMONIALS.length > 0 && (
+    <section class="wrap py-16">
+      <div class="grid gap-4 md:grid-cols-3">
+        {TESTIMONIALS.map((t) => (
+          <figure class="card p-6"><blockquote>"{t.quote}"</blockquote><figcaption class="mt-4 text-[0.9rem] text-muted"><b class="text-text">{t.name}</b>, {t.company}, {t.city}</figcaption></figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <Faq />
+  <CtaCard />
+</Base>
+
+<style>
+  .hero-in { opacity: 0; transform: translateY(18px); filter: blur(8px); animation: hero-in 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-in.d1 { animation-delay: .1s; } .hero-in.d2 { animation-delay: .2s; } .hero-in.d3 { animation-delay: .3s; } .hero-in.d4 { animation-delay: .4s; }
+  @keyframes hero-in { to { opacity: 1; transform: none; filter: none; } }
+
+  .device { transform-origin: 50% 0%; transform: rotateX(var(--rx, 18deg)) scale(var(--s, .94)); will-change: transform; }
+  .float-card { transform: translateY(var(--fy, 40px)); opacity: var(--fo, 0); transition: opacity .2s linear; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-in { animation: none; opacity: 1; transform: none; filter: none; }
+    .device { transform: none; }
+    .float-card { transform: none; opacity: 1; }
+  }
+</style>
+
+<script>
+  // Scroll-linked: the phone tilts upright and the side cards float in as you scroll.
+  const device = document.querySelector<HTMLElement>('[data-tilt]');
+  const cards = document.querySelectorAll<HTMLElement>('.float-card');
+  if (device && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const r = device.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, 1 - (r.top - innerHeight * 0.25) / (innerHeight * 0.6)));
+      device.style.setProperty('--rx', `${18 * (1 - p)}deg`);
+      device.style.setProperty('--s', `${0.94 + 0.06 * p}`);
+      cards.forEach((c, i) => {
+        const q = Math.min(1, Math.max(0, p * 1.4 - i * 0.2));
+        c.style.setProperty('--fy', `${40 * (1 - q)}px`);
+        c.style.setProperty('--fo', String(q));
+      });
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    update();
+  }
+</script>

@@ -1,0 +1,27 @@
+---
+/** Soft diagonal light streaks on black, drifting slowly. Decorative only. */
+interface Props { class?: string; intensity?: number }
+const { class: cls = '', intensity = 1 } = Astro.props;
+---
+<div class={`beams pointer-events-none absolute inset-0 overflow-hidden ${cls}`} style={`--k:${intensity}`} aria-hidden="true">
+  <span class="b b1"></span><span class="b b2"></span><span class="b b3"></span><span class="b b4"></span>
+  <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-bg to-transparent"></div>
+</div>
+
+<style>
+  .b {
+    position: absolute; top: -40%; height: 180%; border-radius: 50%;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / calc(.11 * var(--k))) 45%, rgb(255 255 255 / calc(.16 * var(--k))) 50%, transparent);
+    filter: blur(28px); transform: rotate(28deg); mix-blend-mode: screen;
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  .b1 { left: 4%; width: 9rem; }
+  .b2 { left: 20%; width: 4rem; animation-delay: -4s; opacity: .7; }
+  .b3 { left: 58%; width: 12rem; animation-delay: -8s; opacity: .55; }
+  .b4 { left: 80%; width: 5rem; animation-delay: -2s; opacity: .8; }
+  @keyframes drift {
+    from { transform: rotate(28deg) translateX(-30px); }
+    to { transform: rotate(31deg) translateX(40px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .b { animation: none; } }
+</style>

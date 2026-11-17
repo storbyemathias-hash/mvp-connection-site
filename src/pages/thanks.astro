@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Beams from '../components/Beams.astro';
+import LogoTile from '../components/LogoTile.astro';
+import { SITE } from '../config';
+---
+<Base title="Thanks" noindex>
+  <section class="relative overflow-hidden">
+    <Beams />
+    <div class="wrap relative flex min-h-[80vh] max-w-2xl flex-col items-center justify-center pt-24 text-center">
+      <LogoTile size="lg" />
+      <h1 class="mt-8 text-4xl md:text-5xl">Got it. <span class="fade-tail">We'll call you soon.</span></h1>
+      <p class="mt-4 text-muted">We'll reach out from {SITE.phoneDisplay}. Want to pick a time instead?</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/book" class="btn btn-accent">Book a 15-minute call</a>
+        <a href="/" class="btn btn-dark">Back to home</a>
+      </div>
+    </div>
+  </section>
+</Base>

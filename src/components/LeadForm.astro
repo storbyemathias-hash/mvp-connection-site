@@ -1,0 +1,61 @@
+---
+import { SITE, GHL } from '../config';
+const field = 'w-full rounded-xl bg-surface-2 px-4 py-3.5 text-[1rem] text-text shadow-[inset_0_0_0_1px_var(--color-line-2)] placeholder:text-dim focus:shadow-[inset_0_0_0_1.5px_#f1f1f2] focus:outline-none';
+const label = 'mb-1.5 block text-[0.85rem] font-medium text-muted';
+---
+<form class="lead-form grid gap-4" data-webhook={GHL.formWebhookUrl} novalidate>
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div><label class={label} for="lf-name">Your name</label><input class={field} id="lf-name" name="name" autocomplete="name" required placeholder="First and last name" /></div>
+    <div><label class={label} for="lf-phone">Mobile number</label><input class={field} id="lf-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(555) 555-5555" /></div>
+    <div><label class={label} for="lf-company">Company</label><input class={field} id="lf-company" name="company" autocomplete="organization" placeholder="Your shop name" /></div>
+    <div>
+      <label class={label} for="lf-trade">Trade</label>
+      <select class={field} id="lf-trade" name="trade"><option>Plumbing</option><option>HVAC</option><option>Plumbing &amp; HVAC</option><option>Other</option></select>
+    </div>
+  </div>
+
+  <!-- A2P 10DLC: consent boxes are optional and never pre-checked. -->
+  <label class="flex items-start gap-3 text-[0.8rem] leading-relaxed text-muted">
+    <input type="checkbox" name="sms_consent_service" class="mt-0.5 h-5 w-5 shrink-0 accent-[#f1f1f2]" />
+    <span>I agree to receive text messages from {SITE.name} about my inquiry, scheduling and customer care at the number above. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a class="link text-text underline" href="/privacy">Privacy Policy</a> and <a class="link text-text underline" href="/terms">Terms</a>.</span>
+  </label>
+  <label class="flex items-start gap-3 text-[0.8rem] leading-relaxed text-muted">
+    <input type="checkbox" name="sms_consent_marketing" class="mt-0.5 h-5 w-5 shrink-0 accent-[#f1f1f2]" />
+    <span>I agree to receive occasional marketing text messages from {SITE.name} (offers and updates) at the number above. Up to 4 msgs/month. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase.</span>
+  </label>
+
+  <button type="submit" class="btn btn-white w-full sm:w-auto sm:justify-self-start" data-goal="Form Submit">Call me back</button>
+  <p class="lf-status text-[0.9rem] font-medium" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.lead-form').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('.lf-status')!;
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+      const digits = (data.phone || '').replace(/\D/g, '');
+      if (!data.name?.trim()) { status.textContent = 'Add your name so we know who to ask for.'; return; }
+      if (digits.length < 10) { status.textContent = 'Add a 10-digit US phone number, like (555) 555-5555.'; return; }
+      const url = form.dataset.webhook;
+      if (!url) { status.textContent = 'Form not connected yet (add the GHL webhook URL in src/config.ts).'; return; }
+      status.textContent = 'Sending…';
+      try {
+        await fetch(url, {
+          method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            ...data,
+            sms_consent_service: !!data.sms_consent_service,
+            sms_consent_marketing: !!data.sms_consent_marketing,
+            consent_text_version: '2026-11-17',
+            page: location.pathname,
+            submitted_at: new Date().toISOString(),
+          }),
+        });
+        location.href = '/thanks';
+      } catch {
+        status.textContent = "Couldn't send. Please call us instead.";
+      }
+    });
+  });
+</script>

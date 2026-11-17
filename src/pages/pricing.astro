@@ -1,0 +1,91 @@
+---
+import Base from '../layouts/Base.astro';
+import Beams from '../components/Beams.astro';
+import Faq from '../components/Faq.astro';
+import CtaCard from '../components/CtaCard.astro';
+import { PLANS, COMPARE, PILOT } from '../config';
+const tick = '<path d="m5 12 5 5 9-10"/>';
+const offerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: PLANS.map((p, i) => ({
+    '@type': 'Offer', position: i + 1, name: `${p.name} plan`, price: p.price, priceCurrency: 'USD',
+    priceSpecification: { '@type': 'UnitPriceSpecification', price: p.price, priceCurrency: 'USD', unitText: 'MONTH' },
+  })),
+};
+---
+<Base title="Pricing" description="Two simple monthly plans for plumbing and HVAC shops. Website included on both. Free 14-day trial." schema={[offerSchema]}>
+  <section class="relative overflow-hidden pb-6 pt-32 text-center md:pt-40">
+    <Beams intensity={1.2} />
+    <div class="wrap relative">
+      <p class="eyebrow hero-in">Pricing</p>
+      <h1 class="hero-in d1 mx-auto mt-5 max-w-3xl text-[2.6rem] sm:text-6xl lg:text-[4.2rem]">Simple plans. <span class="fade-tail">Website included.</span></h1>
+      <p class="hero-in d2 mx-auto mt-6 max-w-lg text-[1.08rem] text-muted">Setup is included. No contract. {PILOT.headline} on either plan.</p>
+    </div>
+  </section>
+
+  <section class="wrap pb-10">
+    <div class="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
+      {PLANS.map((p, i) => (
+        <article class={`card spot reveal d${i + 1} flex flex-col p-7 md:p-9 ${p.featured ? 'featured' : ''}`}>
+          <div class="flex items-center justify-between">
+            <p class="text-[0.82rem] font-semibold uppercase tracking-[0.14em] text-muted">{p.name}</p>
+            {p.featured && <span class="chip bg-accent text-on-accent">Recommended</span>}
+          </div>
+          <p class="mt-5 flex items-baseline gap-2"><span class="silver text-6xl font-semibold tracking-[-0.045em]">${p.price}</span><span class="text-muted">/ month</span></p>
+          <a href="/book" data-goal="Book Click" class={`btn mt-7 w-full ${p.featured ? 'btn-white' : 'btn-dark'}`}>Start free trial</a>
+          <p class="mt-6 text-muted">{p.pitch}</p>
+          <ul class="mt-6 flex-1 space-y-3.5 border-t border-line pt-6 text-[0.97rem]">
+            {p.features.map((f) => (
+              <li class="flex gap-3"><span class="check mt-0.5"><svg class="h-3 w-3 text-accent"viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" set:html={tick} /></span>{f}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <p class="reveal mt-6 text-center text-[0.9rem] text-dim">Prices in USD, billed monthly. Cancel anytime.</p>
+  </section>
+
+  <!-- COMPARISON TABLE (reference-style "Yes" table) -->
+  <section class="wrap py-20 md:py-28">
+    <div class="text-center">
+      <p class="eyebrow reveal">Compare</p>
+      <h2 class="reveal d1 mt-4 text-4xl md:text-[3rem]">What's in <span class="fade-tail">each plan</span></h2>
+    </div>
+    <div class="card reveal relative mx-auto mt-12 max-w-4xl overflow-hidden p-2 md:p-6">
+      <Beams intensity={0.5} />
+      <table class="relative w-full text-left text-[0.95rem]">
+        <thead>
+          <tr class="text-[0.82rem] text-muted">
+            <th class="px-3 py-4 font-medium md:px-4">Feature</th>
+            <th class="w-24 px-3 py-4 text-center font-medium md:w-40">Recovery</th>
+            <th class="w-24 rounded-t-xl bg-surface-3 px-3 py-4 text-center font-semibold text-text md:w-40">Growth</th>
+          </tr>
+        </thead>
+        <tbody>
+          {COMPARE.map((r, i) => (
+            <tr class="border-t border-line">
+              <td class="px-3 py-3.5 md:px-4">{r.row}</td>
+              {[r.recovery, r.growth].map((v, j) => (
+                <td class={`px-3 py-3.5 text-center ${j === 1 ? 'bg-surface-3' : ''} ${j === 1 && i === COMPARE.length - 1 ? 'rounded-b-xl' : ''}`}>
+                  {v === true ? <span class="text-text">Yes</span> : v === false ? <span class="text-dim">–</span> : <span class="text-muted">{v}</span>}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <Faq />
+  <CtaCard title="Try it free," tail="keep it if it works." />
+</Base>
+
+<style>
+  .hero-in { opacity: 0; transform: translateY(18px); filter: blur(8px); animation: hero-in 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-in.d1 { animation-delay: .1s; } .hero-in.d2 { animation-delay: .2s; }
+  @keyframes hero-in { to { opacity: 1; transform: none; filter: none; } }
+  .featured { box-shadow: inset 0 0 0 1px #3a3a3f, inset 0 1px 0 rgb(255 255 255 / .1), 0 30px 80px -30px rgb(255 255 255 / .12); }
+  @media (prefers-reduced-motion: reduce) { .hero-in { animation: none; opacity: 1; transform: none; filter: none; } }
+</style>

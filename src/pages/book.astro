@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import Beams from '../components/Beams.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { SITE, GHL, PILOT } from '../config';
+const tick = '<path d="m5 12 5 5 9-10"/>';
+---
+<Base title="Book a 15-minute call" description={`Pick a time for a 15-minute call with ${SITE.name}. We'll show how missed-call text-back works for your shop.`}>
+  <section class="relative overflow-hidden pt-28 md:pt-36">
+    <Beams />
+    <div class="wrap relative grid gap-10 pb-16 md:grid-cols-[.85fr_1.15fr]">
+      <div>
+        <p class="eyebrow">Book a call</p>
+        <h1 class="mt-4 text-4xl md:text-[3.4rem]">15 minutes. <span class="fade-tail">No pitch deck.</span></h1>
+        <p class="mt-5 text-muted">Pick a time that works between jobs. On the call we will:</p>
+        <ul class="mt-5 space-y-3">
+          {['Ask how calls come in today and when they get missed', 'Show you the text your callers would get', `Set up your ${PILOT.headline.toLowerCase()} if it's a fit`].map((t) => (
+            <li class="flex gap-3"><span class="check mt-0.5"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" set:html={tick} /></span>{t}</li>
+          ))}
+        </ul>
+        <p class="mt-8 text-[0.95rem] text-muted">Rather talk now? <a class="link font-medium text-text underline" href={`tel:${SITE.phoneHref}`} data-goal="Call Click">Call {SITE.phoneDisplay}</a></p>
+      </div>
+      <div class="card min-h-[36rem] overflow-hidden p-2 md:p-3">
+        {GHL.calendarEmbed ? <Fragment set:html={GHL.calendarEmbed} /> : (
+          <div class="placeholder-slot m-2">
+            <b>TODO: GoHighLevel calendar embed goes here.</b><br />
+            In GHL: Calendars → your 15-min calendar → Share → Embed code. Paste it into <code>GHL.calendarEmbed</code> in <code>src/config.ts</code>.
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap max-w-3xl py-16">
+    <div class="card p-6 md:p-10">
+      <h2 class="text-2xl md:text-3xl">No time to pick a slot? <span class="fade-tail">Leave your number.</span></h2>
+      <p class="mt-2 text-muted">We'll call you back, usually the same business day.</p>
+      <div class="mt-7"><LeadForm /></div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,122 @@
+---
+/**
+ * Small product-UI mockups for the cards (the reference's "screenshots inside cards").
+ * All data is illustrative and labeled as an example where it matters.
+ */
+interface Props { kind: 'missed' | 'reviews' | 'followup' | 'website' | 'notify' | 'leads'; class?: string }
+const { kind, class: cls = '' } = Astro.props;
+const tick = '<path d="m5 12 5 5 9-10"/>';
+---
+<div class={`panel overflow-hidden text-[0.8rem] ${cls}`} aria-hidden="true">
+  {kind === 'missed' && (
+    <div class="p-4">
+      <div class="flex items-center justify-between"><p class="font-semibold text-text">Missed calls today</p><span class="text-[0.7rem] text-dim">Example</span></div>
+      <div class="mt-3 grid grid-cols-3 gap-2 text-[0.7rem] uppercase tracking-wide text-dim">
+        <p><span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-miss"></span>Missed<br /><b class="text-[1.1rem] normal-case tracking-normal text-text">6</b></p>
+        <p><span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-muted"></span>Texted<br /><b class="text-[1.1rem] normal-case tracking-normal text-text">6</b></p>
+        <p><span class="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-ok"></span>Replied<br /><b class="text-[1.1rem] normal-case tracking-normal text-text">4</b></p>
+      </div>
+      <ul class="mt-4 space-y-2">
+        {[['(555) 010-0142', 'Leaking water heater', 'ok', 'Booked'], ['(555) 010-0178', 'No heat upstairs', 'wait', 'Replied'], ['(555) 010-0115', 'Clogged main line', 'wait', 'Texted']].map(([n, w, c, s]) => (
+          <li class="flex items-center justify-between rounded-lg bg-surface-2 px-3 py-2.5 shadow-[inset_0_0_0_1px_var(--color-line)]">
+            <span><b class="block font-medium text-text">{n}</b><span class="text-dim">{w}</span></span>
+            <span class={`chip chip-${c}`}>{s}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {kind === 'reviews' && (
+    <div class="p-4">
+      <div class="flex items-center justify-between"><p class="font-semibold text-text">Review requests</p><span class="text-[0.7rem] text-dim">Example</span></div>
+      <ol class="relative mt-4 space-y-3 border-l border-line-2 pl-4">
+        {[['Day 1', 'Thanks for choosing us. Mind leaving a quick review?', true], ['Day 7', 'Friendly reminder, it takes 30 seconds.', true], ['Day 21', 'Last nudge, only if you have a minute.', false], ['Day 45', 'Sequence ends. No more asks.', false]].map(([d, t, done]) => (
+          <li class="relative">
+            <span class={`absolute -left-[1.38rem] top-1 h-2.5 w-2.5 rounded-full ${done ? 'bg-text' : 'bg-surface-3 shadow-[inset_0_0_0_1px_var(--color-line-2)]'}`}></span>
+            <p class="text-[0.7rem] uppercase tracking-wide text-dim">{d}</p>
+            <p class="text-muted">{t}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-4 flex items-center gap-1 text-text">
+        {[0, 1, 2, 3, 4].map(() => <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>)}
+        <span class="ml-2 text-dim">New Google review</span>
+      </div>
+    </div>
+  )}
+
+  {kind === 'followup' && (
+    <div class="p-4">
+      <p class="font-semibold text-text">Upcoming check-ins</p>
+      <ul class="mt-3 space-y-2">
+        {[['Furnace tune-up', 'Oct 2', 'wait', 'Scheduled'], ['Water heater flush', 'Oct 9', 'wait', 'Scheduled'], ['AC filter reminder', 'Sep 18', 'ok', 'Rebooked']].map(([t, d, c, s]) => (
+          <li class="flex items-center justify-between rounded-lg bg-surface-2 px-3 py-2.5 shadow-[inset_0_0_0_1px_var(--color-line)]">
+            <span><b class="block font-medium text-text">{t}</b><span class="text-dim">{d}</span></span>
+            <span class={`chip chip-${c}`}>{s}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {kind === 'website' && (
+    <div>
+      <div class="flex items-center gap-1.5 border-b border-line px-3 py-2.5">
+        <i class="h-2 w-2 rounded-full bg-line-2"></i><i class="h-2 w-2 rounded-full bg-line-2"></i><i class="h-2 w-2 rounded-full bg-line-2"></i>
+        <span class="ml-2 flex-1 truncate rounded-md bg-surface-2 px-2 py-1 text-[0.68rem] text-dim">yourshop.com</span>
+      </div>
+      <div class="relative p-4">
+        <div class="h-2.5 w-2/3 rounded bg-surface-3"></div>
+        <div class="mt-2 h-2 w-1/2 rounded bg-surface-2"></div>
+        <div class="mt-4 inline-block rounded-full bg-text px-3 py-1 text-[0.68rem] font-semibold text-bg">Call now</div>
+        <div class="mt-4 grid grid-cols-3 gap-2"><div class="h-10 rounded-md bg-surface-2"></div><div class="h-10 rounded-md bg-surface-2"></div><div class="h-10 rounded-md bg-surface-2"></div></div>
+        <div class="absolute bottom-3 right-3 w-36 rounded-xl bg-surface-3 p-2.5 shadow-[0_10px_30px_-8px_#000,inset_0_0_0_1px_var(--color-line-2)]">
+          <p class="text-[0.66rem] text-dim">Chat</p>
+          <p class="mt-1 rounded-lg bg-surface-2 px-2 py-1.5 text-[0.7rem] text-text">What's the job? I'll get you a time.</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {kind === 'notify' && (
+    <div class="space-y-2 p-4">
+      {[['New lead', 'Leaking water heater · (555) 010-0142', 'now'], ['Reply received', '"Yes please, 2 to 4 works"', '2m'], ['Review posted', '★★★★★ on Google', '1h']].map(([t, d, ago], i) => (
+        <div class={`rounded-xl bg-surface-2 px-3 py-2.5 shadow-[inset_0_0_0_1px_var(--color-line)] ${i === 0 ? '' : 'opacity-70'}`}>
+          <div class="flex items-center justify-between"><b class="font-medium text-text">{t}</b><span class="text-[0.68rem] text-dim">{ago}</span></div>
+          <p class="mt-0.5 truncate text-dim">{d}</p>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {kind === 'leads' && (
+    <div class="p-4 md:p-6">
+      <div class="flex items-center justify-between">
+        <p class="text-[1rem] font-semibold text-text">Leads this week</p>
+        <span class="text-[0.72rem] text-dim">Example data</span>
+      </div>
+      <div class="mt-4 overflow-x-auto">
+        <table class="w-full min-w-[34rem] text-left">
+          <thead class="text-[0.72rem] text-dim">
+            <tr><th class="py-2 font-medium">Caller</th><th class="py-2 font-medium">Job</th><th class="py-2 font-medium">Missed at</th><th class="py-2 font-medium">Texted back</th><th class="py-2 font-medium">Status</th></tr>
+          </thead>
+          <tbody class="text-muted">
+            {[
+              ['(555) 010-0142', 'Water heater', 'Mon 2:14 PM', '4 sec', 'ok', 'Booked'],
+              ['(555) 010-0178', 'No heat', 'Mon 6:40 PM', '3 sec', 'ok', 'Booked'],
+              ['(555) 010-0115', 'Drain clog', 'Tue 11:02 AM', '5 sec', 'wait', 'Replied'],
+              ['(555) 010-0163', 'AC not cooling', 'Wed 9:27 AM', '4 sec', 'ok', 'Booked'],
+              ['(555) 010-0191', 'Faucet install', 'Thu 4:55 PM', '3 sec', 'wait', 'Texted'],
+            ].map(([n, j, m, t, c, s]) => (
+              <tr class="border-t border-line">
+                <td class="py-3 text-text">{n}</td><td class="py-3 font-medium text-text">{j}</td><td class="py-3">{m}</td><td class="py-3">{t}</td>
+                <td class="py-3"><span class={`chip chip-${c}`}><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" set:html={tick} />{s}</span></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )}
+</div>

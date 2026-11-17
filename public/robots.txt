@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO(fill-in): replace example.com with your domain
+Sitemap: https://www.example.com/sitemap-index.xml

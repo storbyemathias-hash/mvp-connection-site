@@ -1,0 +1,43 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SITE } from '../config';
+---
+<Legal title="Terms of Service & SMS Terms" updated="[DATE]">
+  <p>These Terms govern your use of {SITE.url} and services provided by {SITE.legalName} ("{SITE.name}", "we", "us"). By using the site or our services, you agree to these Terms.</p>
+
+  <h2>SMS terms</h2>
+  <h3>Program</h3>
+  <p><b>{SITE.name}</b> sends text messages to people who opt in through our website forms or who contact us and ask to be texted. Messages relate to your inquiry, scheduling and customer care. If you separately opt in to marketing, we may also send occasional offers and updates.</p>
+  <h3>Frequency and cost</h3>
+  <p>Message frequency varies. Marketing messages are limited to up to 4 per month. Msg &amp; data rates may apply. Check your mobile plan for details.</p>
+  <h3>Opt out and help</h3>
+  <p>Reply <b>STOP</b> to any message to cancel. You will receive one final message confirming you have been unsubscribed. Reply <b>HELP</b> for help, or contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a>.</p>
+  <h3>Carriers</h3>
+  <p>Carriers are not liable for delayed or undelivered messages.</p>
+  <h3>Consent</h3>
+  <p>Consent to receive text messages is not a condition of any purchase. See our <a href="/privacy">Privacy Policy</a> for how we handle your information. We do not share your mobile number for marketing purposes.</p>
+
+  <h2>Our services</h2>
+  <p>We provide automation services for home-service businesses, including missed-call text-back, review requests, customer follow-up, and website and website chat services, under plans described on our website. Specific scope, pricing and billing are confirmed in writing when you sign up. [ATTORNEY: link or reference a separate customer service agreement]</p>
+
+  <h2>Free trial</h2>
+  <p>New customers may receive a free 14-day trial. Unless you cancel before the trial ends, your selected plan begins and is billed monthly. [CONFIRM trial and billing terms]</p>
+
+  <h2>Customer responsibilities</h2>
+  <p>If you are a business customer, you are responsible for having a lawful basis to contact your own customers, for the accuracy of the information you give us, and for complying with laws that apply to your business, including the TCPA and carrier rules. [ATTORNEY: review allocation of compliance responsibility]</p>
+
+  <h2>Acceptable use</h2>
+  <p>You may not use our services to send spam, unlawful content, or messages to people who have not consented.</p>
+
+  <h2>Disclaimers and limitation of liability</h2>
+  <p>The site and services are provided "as is". To the extent permitted by law, we are not liable for indirect or consequential damages, and our total liability is limited to the amount you paid us in the 3 months before the claim. [ATTORNEY: review]</p>
+
+  <h2>Governing law</h2>
+  <p>These Terms are governed by the laws of [STATE], without regard to conflict-of-law rules.</p>
+
+  <h2>Changes</h2>
+  <p>We may update these Terms. The "Last updated" date shows the latest version.</p>
+
+  <h2>Contact</h2>
+  <p>{SITE.legalName}<br />{SITE.address}<br /><a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a></p>
+</Legal>

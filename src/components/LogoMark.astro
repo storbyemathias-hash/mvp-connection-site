@@ -1,0 +1,17 @@
+---
+import { globePaths, lettersPath, STROKE, VIEWBOX, GLOBE_VIEWBOX } from '../lib/logo';
+interface Props { variant?: 'full' | 'globe'; class?: string; title?: string }
+const { variant = 'globe', class: cls = '', title = 'MVP Connection' } = Astro.props;
+---
+<svg
+  viewBox={variant === 'full' ? VIEWBOX : GLOBE_VIEWBOX}
+  class={cls}
+  role="img"
+  aria-label={title}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g fill="none" stroke="currentColor" stroke-width={STROKE}>
+    {globePaths.map((d) => <path d={d} />)}
+  </g>
+  {variant === 'full' && <path d={lettersPath} fill="currentColor" fill-rule="evenodd" />}
+</svg>

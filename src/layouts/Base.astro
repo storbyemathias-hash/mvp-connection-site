@@ -1,0 +1,215 @@
+---
+import '../styles/global.css';
+import { SITE, PLAUSIBLE_DOMAIN, GHL } from '../config';
+import LogoMark from '../components/LogoMark.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  schema?: Record<string, unknown>[];
+  /** The page has its own orange CTA in the first screen (marked data-main-cta). */
+  mainCta?: boolean;
+}
+const { title, description = SITE.description, noindex = false, schema = [], mainCta = false } = Astro.props;
+const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name}: Stop losing jobs to missed calls`;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL('/img/og.png', SITE.url).href;
+const year = new Date().getFullYear();
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/features', label: 'Features' },
+  { href: '/pricing', label: 'Pricing' },
+];
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: SITE.name,
+  url: SITE.url,
+  telephone: SITE.phoneHref,
+  email: SITE.email,
+  logo: new URL('/img/logo-flat.png', SITE.url).href,
+  description: SITE.description,
+  areaServed: { '@type': 'Country', name: 'United States' },
+  priceRange: '$197-$297/mo',
+};
+const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>';
+---
+<!doctype html>
+<html lang="en-US" data-main-cta-visible={mainCta ? '' : undefined}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/img/logo-flat.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify([business, ...schema])} />
+    {PLAUSIBLE_DOMAIN && <script defer data-domain={PLAUSIBLE_DOMAIN} src="https://plausible.io/js/script.outbound-links.js"></script>}
+  </head>
+  <body class="min-h-dvh overflow-x-clip pb-24 md:pb-0">
+    <a href="#main" class="btn btn-white sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50">Skip to content</a>
+
+    <header id="top-bar" class="fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-300">
+      <div class="wrap flex h-16 items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-2.5" aria-label={`${SITE.name} home`}>
+          <LogoMark class="h-7 w-7 text-text" title="" />
+          <span class="text-[1.02rem] font-semibold tracking-tight">MVP <span class="text-muted">Connection</span></span>
+        </a>
+        <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex" aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={path === n.href ? 'page' : undefined}
+              class={`nav-link relative rounded-full px-3.5 py-2 text-[0.92rem] transition-colors ${path === n.href ? 'text-text' : 'text-muted hover:text-text'}`}>{n.label}</a>
+          ))}
+        </nav>
+        <div class="flex items-center gap-2">
+          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="hidden items-center gap-2 px-2 text-[0.92rem] text-text lg:inline-flex">
+            <svg class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={phoneIcon} />{SITE.phoneDisplay}
+          </a>
+          <a href="/book" data-goal="Book Click" class="btn btn-accent cta-dup !min-h-10 !px-4 !text-[0.9rem]">Book a call</a>
+          <button id="menu-btn" class="grid h-10 w-10 place-items-center rounded-full text-text md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+          </button>
+        </div>
+      </div>
+      <nav id="mobile-menu" class="wrap hidden pb-4 md:hidden" aria-label="Mobile">
+        <div class="card grid p-2">
+          {nav.map((n) => <a href={n.href} class="rounded-xl px-4 py-3.5 text-[1.05rem] hover:bg-surface-3" aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>)}
+          <a href="/book" class="rounded-xl px-4 py-3.5 text-[1.05rem] hover:bg-surface-3">Book a call</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main"><slot /></main>
+
+    <footer class="wrap pb-8 pt-16">
+      <div class="card relative overflow-hidden px-6 pb-0 pt-10 md:px-12 md:pt-14">
+        <div class="relative z-10 grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+          <div>
+            <a href="/" class="flex items-center gap-2.5">
+              <LogoMark class="h-7 w-7" title="" />
+              <span class="font-semibold">MVP Connection</span>
+            </a>
+            <p class="mt-4 max-w-xs text-[0.95rem] text-muted">Missed-call text-back, reviews, follow-ups and a website for plumbing and HVAC shops.</p>
+          </div>
+          <div class="text-[0.92rem]">
+            <p class="mb-3 font-semibold">Pages</p>
+            <ul class="space-y-2 text-muted">
+              {nav.map((n) => <li><a class="link" href={n.href}>{n.label}</a></li>)}
+              <li><a class="link" href="/book">Book a call</a></li>
+            </ul>
+          </div>
+          <div class="text-[0.92rem]">
+            <p class="mb-3 font-semibold">Contact</p>
+            <ul class="space-y-2 text-muted">
+              <li><a class="link" href={`tel:${SITE.phoneHref}`} data-goal="Call Click">{SITE.phoneDisplay}</a></li>
+              <li><a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+              <li><a class="link" href="/privacy">Privacy policy</a></li>
+              <li><a class="link" href="/terms">Terms &amp; SMS terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="relative z-10 mt-12 flex flex-col gap-1 text-[0.8rem] text-dim md:flex-row md:justify-between">
+          <p>&copy; {year} {SITE.name}. All rights reserved.</p>
+          <p>Texts: reply STOP to opt out, HELP for help. Msg &amp; data rates may apply.</p>
+        </div>
+        <!-- Oversized wordmark fading into the card, like the reference -->
+        <p class="pointer-events-none mt-6 select-none text-center text-[28vw] font-bold leading-[0.78] tracking-[-0.06em] md:text-[17rem]" aria-hidden="true"
+           style="background:linear-gradient(180deg,rgb(255 255 255 / .09),rgb(255 255 255 / 0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent">MVP</p>
+      </div>
+    </footer>
+
+    {path !== '/book' && (
+      <div class="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 md:hidden">
+        <div class="glass grid grid-cols-[auto_1fr] gap-2 rounded-full p-1.5">
+          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="btn btn-dark !min-h-12 !px-5" aria-label={`Call ${SITE.phoneDisplay}`}>
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={phoneIcon} />Call
+          </a>
+          <a href="/book" data-goal="Book Click" class="btn btn-accent cta-dup !min-h-12">Book a 15-min call</a>
+        </div>
+      </div>
+    )}
+
+    {GHL.chatWidget ? <Fragment set:html={GHL.chatWidget} /> : null}
+
+    <script>
+      const bar = document.getElementById('top-bar')!;
+      const onScroll = () => bar.classList.toggle('scrolled', scrollY > 8);
+      addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+      const btn = document.getElementById('menu-btn')!;
+      const menu = document.getElementById('mobile-menu')!;
+      btn.addEventListener('click', () => {
+        const open = menu.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', String(open));
+        bar.classList.toggle('menu-open', open);
+      });
+
+      // While the page's main CTA (data-main-cta) is on screen, the header and mobile-bar
+      // copies of it stay white, so orange is never repeated three times in one view.
+      const mainCta = document.querySelector('[data-main-cta]');
+      if (mainCta) {
+        new IntersectionObserver(([e]) => {
+          document.documentElement.toggleAttribute('data-main-cta-visible', e.isIntersecting);
+        }).observe(mainCta);
+      }
+
+      const io = new IntersectionObserver(
+        (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),
+        { rootMargin: '0px 0px -10% 0px' },
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      // Cursor spotlight on cards.
+      if (matchMedia('(hover: hover)').matches) {
+        document.addEventListener('pointermove', (e) => {
+          const card = (e.target as HTMLElement).closest<HTMLElement>('.spot');
+          if (!card) return;
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+          card.style.setProperty('--my', `${e.clientY - r.top}px`);
+        }, { passive: true });
+      }
+
+      document.addEventListener('click', (e) => {
+        const el = (e.target as HTMLElement).closest<HTMLElement>('[data-goal]');
+        const p = (window as any).plausible;
+        if (el && typeof p === 'function') p(el.dataset.goal);
+      });
+    </script>
+    <style is:global>
+      /* Glass only on the floating functional layer (header, bottom bar), per liquid-glass.md */
+      #top-bar.scrolled, #top-bar.menu-open, .glass {
+        background: rgb(12 12 13 / .72);
+        -webkit-backdrop-filter: blur(24px) saturate(1.4);
+        backdrop-filter: blur(24px) saturate(1.4);
+        box-shadow: inset 0 -1px 0 rgb(255 255 255 / .06);
+      }
+      .glass { box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1), 0 10px 30px -10px rgb(0 0 0 / .8); }
+      /* Active page: thin orange underline under the nav item */
+      .nav-link[aria-current="page"]::after {
+        content: ""; position: absolute; left: 0.875rem; right: 0.875rem; bottom: 0.2rem;
+        height: 2px; border-radius: 2px; background: var(--accent);
+      }
+      @media (prefers-reduced-transparency: reduce) {
+        #top-bar.scrolled, #top-bar.menu-open, .glass { background: #0c0c0d; backdrop-filter: none; -webkit-backdrop-filter: none; }
+      }
+    </style>
+  </body>
+</html>

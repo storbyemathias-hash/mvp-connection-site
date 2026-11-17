@@ -1,0 +1,53 @@
+---
+/**
+ * Spinning chrome MVP logo. A silver SVG poster shows instantly; three.js loads
+ * when the browser is idle and the canvas fades in over it.
+ */
+import { globePaths, lettersPath, STROKE, VIEWBOX } from '../lib/logo';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+---
+<div class={`chrome-3d relative ${cls}`} data-chrome3d>
+  <svg viewBox={VIEWBOX} class="poster absolute inset-[9%] h-[82%] w-[82%] transition-opacity duration-700" aria-hidden="true">
+    <defs>
+      <linearGradient id="cposter" gradientUnits="userSpaceOnUse" x1="300" y1="190" x2="700" y2="840">
+        <stop offset="0" stop-color="#f4f4f5" /><stop offset=".4" stop-color="#9c9ca2" /><stop offset=".55" stop-color="#e2e2e5" /><stop offset="1" stop-color="#5c5c62" />
+      </linearGradient>
+    </defs>
+    <g fill="none" stroke="url(#cposter)" stroke-width={STROKE + 4}>{globePaths.map((d) => <path d={d} />)}</g>
+    <path d={lettersPath} fill="url(#cposter)" fill-rule="evenodd" />
+  </svg>
+  <canvas class="absolute inset-0 h-full w-full cursor-grab opacity-0 active:cursor-grabbing" aria-label="3D MVP logo. Drag to spin." role="img"></canvas>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-chrome3d]').forEach((root) => {
+    const canvas = root.querySelector('canvas')!;
+    const poster = root.querySelector<SVGElement>('.poster')!;
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasWebGL = (() => { try { return !!document.createElement('canvas').getContext('webgl2'); } catch { return false; } })();
+    if (!hasWebGL) return; // the silver poster stays
+
+    const start = async () => {
+      try {
+        const { mountChromeLogo } = await import('../scripts/chrome-logo');
+        mountChromeLogo(canvas, { reduceMotion });
+        canvas.animate([{ opacity: 0, transform: 'scale(.94) rotate(-4deg)' }, { opacity: 1, transform: 'none' }], { duration: 1100, easing: 'cubic-bezier(.2,.7,.2,1)', fill: 'forwards' });
+        poster.style.opacity = '0';
+      } catch { /* poster stays */ }
+    };
+    // three.js is heavy on slow phones, so it waits for the first sign of a person
+    // (scroll, touch, mouse, key) or 5 s after load. The silver poster covers until then.
+    let fired = false;
+    const go = () => {
+      if (fired) return; fired = true;
+      events.forEach((ev) => removeEventListener(ev, go));
+      const idle = (window as any).requestIdleCallback ?? ((f: () => void) => setTimeout(f, 200));
+      idle(start, { timeout: 1200 });
+    };
+    const events = ['pointermove', 'pointerdown', 'scroll', 'touchstart', 'keydown'];
+    events.forEach((ev) => addEventListener(ev, go, { once: true, passive: true }));
+    const later = () => setTimeout(go, 5000);
+    if (document.readyState === 'complete') later(); else addEventListener('load', later, { once: true });
+  });
+</script>

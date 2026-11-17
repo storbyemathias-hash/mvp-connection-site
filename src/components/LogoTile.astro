@@ -1,0 +1,27 @@
+---
+/** App-icon style tile with the MVP globe in brushed silver (the reference's centered icon). */
+import { globePaths, STROKE, GLOBE_VIEWBOX } from '../lib/logo';
+interface Props { class?: string; size?: 'md' | 'lg' }
+const { class: cls = '', size = 'md' } = Astro.props;
+const dim = size === 'lg' ? 'h-24 w-24 rounded-[1.6rem] p-4' : 'h-16 w-16 rounded-[1.1rem] p-3';
+const gid = 'lt' + Math.random().toString(36).slice(2, 7);
+---
+<div class={`tile relative grid place-items-center ${dim} ${cls}`} aria-hidden="true">
+  <svg viewBox={GLOBE_VIEWBOX} class="h-full w-full">
+    <defs>
+      <linearGradient id={gid} gradientUnits="userSpaceOnUse" x1="300" y1="200" x2="720" y2="640">
+        <stop offset="0" stop-color="#ffffff" />
+        <stop offset=".45" stop-color="#b9b9bf" />
+        <stop offset=".6" stop-color="#eeeeef" />
+        <stop offset="1" stop-color="#77777d" />
+      </linearGradient>
+    </defs>
+    <g fill="none" stroke={`url(#${gid})`} stroke-width={STROKE + 6}>{globePaths.map((d) => <path d={d} />)}</g>
+  </svg>
+</div>
+<style>
+  .tile {
+    background: linear-gradient(160deg, #2a2a2e 0%, #121214 55%, #0a0a0b 100%);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .18), inset 0 0 0 1px rgb(255 255 255 / .08), 0 24px 50px -16px rgb(0 0 0 / .9), 0 0 60px -10px rgb(255 255 255 / .12);
+  }
+</style>

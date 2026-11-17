@@ -1,0 +1,120 @@
+---
+import Base from '../layouts/Base.astro';
+import Beams from '../components/Beams.astro';
+import { FeaturesHeroLogo } from '../components/FeaturesHeroLogo';
+import Mock from '../components/Mock.astro';
+import PhoneDemo from '../components/PhoneDemo.astro';
+import Faq from '../components/Faq.astro';
+import CtaCard from '../components/CtaCard.astro';
+
+type Section = {
+  eyebrow: string; title: string; tail: string; body: string; checks: string[];
+  mock: 'missed' | 'reviews' | 'followup' | 'website' | 'notify' | 'phone' | 'setup';
+};
+const sections: Section[] = [
+  {
+    eyebrow: 'Missed-call text-back', title: 'Turn missed calls', tail: 'into booked jobs',
+    body: 'When you can\'t pick up, the caller gets a text from your shop within seconds. They know you saw it, so they wait for you instead of calling someone else.',
+    checks: ['Text sent in seconds', 'Written in your words', 'Works with your number'], mock: 'phone',
+  },
+  {
+    eyebrow: 'Lead tracking', title: 'See every caller', tail: 'and where they stand',
+    body: 'Each missed call is logged with the number, what they need and whether they replied. Nothing slips through because you were on a roof.',
+    checks: ['Every call logged', 'Clear status', 'Nothing forgotten'], mock: 'missed',
+  },
+  {
+    eyebrow: 'Review collection', title: 'More Google reviews,', tail: 'without asking in person',
+    body: 'After each job, customers get a friendly review request, then a few polite reminders over 45 days. The sequence stops as soon as they leave one.',
+    checks: ['Sent after every job', 'Stops when they review', 'Polite, never pushy'], mock: 'reviews',
+  },
+  {
+    eyebrow: 'Retention follow-up', title: 'Bring past customers', tail: 'back for the next job',
+    body: 'Seasonal check-ins go out on their own: furnace tune-ups, AC filters, water heater flushes. Work from people who already trust you.',
+    checks: ['Seasonal reminders', 'Repeat work', 'Runs on its own'], mock: 'followup',
+  },
+  {
+    eyebrow: 'Website included', title: 'A website that', tail: 'gets you calls',
+    body: 'Both plans include a fast, phone-friendly website for your shop. We build it, host it and keep it running. On Growth, a chat on the site collects job details for you.',
+    checks: ['Built and hosted for you', 'Big call button', 'Chat on Growth'], mock: 'website',
+  },
+  {
+    eyebrow: 'On your phone', title: 'No new app.', tail: 'Just texts.',
+    body: 'New leads, replies and reviews show up as texts on the phone you already carry. Text back when you have a minute. That\'s the whole system.',
+    checks: ['Alerts by text', 'Reply from your phone', 'Nothing to learn'], mock: 'notify',
+  },
+];
+const trades = ['Plumbing', 'HVAC', 'Drain & sewer', 'Water heaters', 'Heating & cooling', 'Owner-operators', 'Small crews'];
+const tick = '<path d="m5 12 5 5 9-10"/>';
+---
+<Base mainCta title="Features"description="Missed-call text-back, lead tracking, review requests, customer follow-up and a website for plumbing and HVAC shops.">
+  <!-- HERO: centered icon tile over light beams, like the reference -->
+  <section class="relative overflow-hidden pb-10 pt-16 text-center md:pt-20">
+    <Beams intensity={1.4} />
+    <div class="wrap relative">
+      <!-- Liquid Glass Logo: sphere-to-tile glass entrance that settles on the MVP logo -->
+      <div class="glass-logo mx-auto -mb-4 max-w-[28rem]">
+        <FeaturesHeroLogo client:load />
+      </div>
+      <p class="eyebrow hero-in d1 mt-2">Everything in one system</p>
+      <h1 class="hero-in d2 mx-auto mt-5 max-w-3xl text-[2.6rem] sm:text-6xl lg:text-[4.2rem]">One system that answers <span class="fade-tail">when you can't</span></h1>
+      <p class="hero-in d3 mx-auto mt-6 max-w-xl text-[1.08rem] text-muted">Stop losing jobs between the ring and the voicemail. MVP Connection texts back, follows up and asks for reviews, all under one roof.</p>
+      <div class="hero-in d4 mt-8"><a href="/book" data-goal="Book Click" data-main-cta class="btn btn-accent">Book a 15-minute call</a></div>
+    </div>
+
+    <div class="relative mt-20">
+      <p class="text-[0.85rem] text-dim">Built for the trades</p>
+      <div class="marquee mt-5" aria-hidden="true">
+        <div class="marquee-track">
+          {[...trades, ...trades].map((t) => <span class="mx-7 whitespace-nowrap text-[1.05rem] font-medium text-muted">{t}</span>)}
+        </div>
+      </div>
+      <p class="sr-only">Built for {trades.join(', ')}.</p>
+    </div>
+  </section>
+
+  <!-- ALTERNATING FEATURE ROWS -->
+  <div class="wrap">
+    {sections.map((s, i) => (
+      <section class="grid items-center gap-10 border-t border-line py-20 first:border-t-0 md:grid-cols-2 md:gap-16 md:py-28">
+        <div class={i % 2 === 1 ? 'md:order-2' : ''}>
+          <p class="eyebrow reveal">{s.eyebrow}</p>
+          <h2 class="reveal d1 mt-4 text-[2.2rem] md:text-[2.9rem]">{s.title} <span class="fade-tail">{s.tail}</span></h2>
+          <p class="reveal d2 mt-5 max-w-lg text-muted">{s.body}</p>
+          <ul class="reveal d3 mt-8 grid gap-x-6 gap-y-3 sm:grid-cols-2">
+            {s.checks.map((c) => (
+              <li class="flex items-center gap-3 text-[0.97rem]">
+                <span class="check"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" set:html={tick} /></span>{c}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class={`reveal d2 ${i % 2 === 1 ? 'md:order-1' : ''}`}>
+          <div class="card spot relative overflow-hidden p-5 md:p-8">
+            <Beams intensity={0.5} />
+            {s.mock === 'phone'
+              ? <div class="relative origin-top scale-[.85] -mb-16 md:scale-90 md:-mb-12"><PhoneDemo /></div>
+              : <Mock kind={s.mock as any} class="relative" />}
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <Faq />
+  <CtaCard title="Run your phone better," tail="book with confidence." />
+</Base>
+
+<style>
+  .hero-in { opacity: 0; transform: translateY(18px); filter: blur(8px); animation: hero-in 1s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero-in.d1 { animation-delay: .1s; } .hero-in.d2 { animation-delay: .2s; } .hero-in.d3 { animation-delay: .3s; } .hero-in.d4 { animation-delay: .4s; }
+  @keyframes hero-in { to { opacity: 1; transform: none; filter: none; } }
+  /* Soft edges so the component's black box melts into the light beams */
+  .glass-logo { -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent); mask-image: radial-gradient(closest-side, #000 72%, transparent); }
+  .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent); }
+  .marquee-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-in { animation: none; opacity: 1; transform: none; filter: none; }
+    .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
+  }
+</style>

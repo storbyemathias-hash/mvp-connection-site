@@ -1,0 +1,23 @@
+---
+import { FAQ } from '../config';
+---
+<section id="faq" class="wrap py-24 md:py-32">
+  <div class="text-center">
+    <p class="eyebrow reveal">FAQ</p>
+    <h2 class="reveal d1 mt-4 text-4xl md:text-[3.25rem]">Need clarity? <span class="fade-tail">Start here</span></h2>
+    <p class="reveal d2 mt-4 text-muted">Answers to the questions shop owners ask us most.</p>
+  </div>
+  <div class="mx-auto mt-12 grid max-w-3xl gap-3">
+    {FAQ.map((f, i) => (
+      <details class={`faq card reveal group px-5 md:px-6 ${i < 4 ? `d${i + 1}` : ''}`} name="faq">
+        <summary class="flex min-h-16 cursor-pointer list-none items-center gap-4 py-4 text-[1.02rem] font-medium">
+          <span class="grid h-6 w-6 shrink-0 place-items-center text-muted transition-transform duration-300 group-open:rotate-45">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+          {f.q}
+        </summary>
+        <p class="pb-5 pl-10 pr-2 text-muted">{f.a}</p>
+      </details>
+    ))}
+  </div>
+</section>

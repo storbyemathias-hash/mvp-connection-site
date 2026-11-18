@@ -12,7 +12,7 @@ interface Props {
   mainCta?: boolean;
 }
 const { title, description = SITE.description, noindex = false, schema = [], mainCta = false } = Astro.props;
-const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name}: Stop losing jobs to missed calls`;
+const fullTitle = title ? `${title} | ${SITE.name}` : `${SITE.name}: Websites & Automatic Texting for Plumbers and HVAC`;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = new URL('/img/og.png', SITE.url).href;
 const year = new Date().getFullYear();
@@ -106,7 +106,7 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
               <LogoMark class="h-7 w-7" title="" />
               <span class="font-semibold">MVP Connection</span>
             </a>
-            <p class="mt-4 max-w-xs text-[0.95rem] text-muted">Missed-call text-back, reviews, follow-ups and a website for plumbing and HVAC shops.</p>
+            <p class="mt-4 max-w-xs text-[0.95rem] text-muted">A website, missed-call texts, Google reviews and repeat-customer reminders for plumbing and HVAC shops. We set it up for you.</p>
           </div>
           <div class="text-[0.92rem]">
             <p class="mb-3 font-semibold">Pages</p>
@@ -167,7 +167,7 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
       if (mainCta) {
         new IntersectionObserver(([e]) => {
           document.documentElement.toggleAttribute('data-main-cta-visible', e.isIntersecting);
-        }).observe(mainCta);
+        }).observe(mainCta.closest('section') ?? mainCta); // whole hero, so it also holds on phones where the CTA sits below the fold
       }
 
       // Cursor spotlight on cards.

@@ -21,6 +21,7 @@ Copy is plain American English; the user speaks Norwegian in chat.
 - `public/` – logo.svg, favicon.svg, img/og.png
 
 ## Fixed rules
+- Copy tone: say plainly what we sell (website + automatic texts), short sentences, contractor language, a little humor. No jargon like "retention" or "lead capture system".
 - No invented testimonials, stats, names, logos or customer claims. Never cite "62%". Use "Recommended", not "Most popular".
 - Colors: greyscale "Graphite" palette + ONE accent, safety orange. Hex values live only in `:root`
   (`--accent #FF6A1A`, `--accent-hover #FF8140`, `--on-accent #0B0B0B`). Use `text-accent`/`bg-accent`/`btn-accent`; never hardcode orange.

@@ -17,7 +17,7 @@ export const SITE = {
   legalName: '[LEGAL ENTITY NAME]',
   address: '[STREET, CITY, STATE ZIP]',
   description:
-    'Missed-call text-back, review requests, customer follow-up and a website for plumbing and HVAC shops. Done for you. Free 14-day trial.',
+    'We build your website and set up automatic texts that win you more jobs: a text back when you miss a call, Google review requests and reminders for past customers. For plumbing and HVAC shops. Free 14-day trial.',
 };
 
 export const PILOT = {
@@ -59,24 +59,24 @@ export const PLANS: Plan[] = [
   {
     name: 'Recovery',
     price: 197,
-    pitch: 'Stop losing the calls you already paid for.',
+    pitch: 'A website plus an automatic text every time you miss a call.',
     features: [
-      'Missed-call text-back, sent within seconds',
-      'Texts written in your voice',
-      'Every lead sent to your phone',
-      'A website for your shop, built and hosted',
-      'Setup done for you',
+      'A website for your shop, built and hosted by us',
+      'Miss a call? The caller gets a text in seconds',
+      'Texts written the way you talk',
+      'New leads sent straight to your phone',
+      'We do the setup',
     ],
   },
   {
     name: 'Growth',
     price: 297,
-    pitch: 'Win the call, then win the review and the repeat job.',
+    pitch: 'Everything in Recovery, plus more Google reviews and more repeat jobs.',
     features: [
       'Everything in Recovery',
-      '45-day review requests after every job',
-      'Check-ins that bring past customers back',
-      'Website with chat that captures leads',
+      'We ask every customer for a Google review',
+      'Reminders that bring past customers back',
+      'A chat on your website that collects job details',
       'Priority support',
     ],
     featured: true,
@@ -85,13 +85,13 @@ export const PLANS: Plan[] = [
 
 /** Rows for the plan comparison table on /pricing. */
 export const COMPARE: { row: string; recovery: boolean | string; growth: boolean | string }[] = [
-  { row: 'Missed-call text-back', recovery: true, growth: true },
-  { row: 'Texts written in your voice', recovery: true, growth: true },
-  { row: 'Leads sent to your phone', recovery: true, growth: true },
   { row: 'Website for your shop', recovery: true, growth: true },
-  { row: 'Website chat', recovery: false, growth: true },
-  { row: '45-day review requests', recovery: false, growth: true },
-  { row: 'Past-customer check-ins', recovery: false, growth: true },
+  { row: 'Automatic text when you miss a call', recovery: true, growth: true },
+  { row: 'Texts written the way you talk', recovery: true, growth: true },
+  { row: 'New leads sent to your phone', recovery: true, growth: true },
+  { row: 'Google review requests', recovery: false, growth: true },
+  { row: 'Repeat-customer reminders', recovery: false, growth: true },
+  { row: 'Chat on your website', recovery: false, growth: true },
   { row: 'Setup', recovery: 'Included', growth: 'Included' },
   { row: 'Support', recovery: 'Standard', growth: 'Priority' },
 ];
@@ -105,12 +105,20 @@ export const TESTIMONIALS: { quote: string; name: string; company: string; city:
 // TODO(fill-in): review every answer so it matches how you actually work.
 export const FAQ: { q: string; a: string }[] = [
   {
+    q: 'So what am I actually paying for?',
+    a: 'A website for your shop, plus automatic texts that win you more work: a text back when you miss a call, a Google review request after each job, and reminders that bring past customers back. We set it all up and keep it running for one monthly price.',
+  },
+  {
+    q: 'When will I see it working?',
+    a: 'The missed-call text works from the day we switch it on. Reviews and repeat jobs build up over the following weeks as you finish jobs.',
+  },
+  {
     q: 'Do I need a new phone number?',
     a: 'No. You keep the number on your truck and your ads. We set up call forwarding so missed calls trigger the text. We walk you through it on the setup call.',
   },
   {
     q: 'Do I have to learn new software?',
-    a: 'No. We build and run it. New leads and replies show up as texts on your phone. You can use the app if you want, but you do not have to.',
+    a: 'No. If you can send a text, you can use this. New leads and replies show up as texts on your phone. There is an app if you want it, but you don\'t have to touch it.',
   },
   {
     q: 'Is the website really included?',
@@ -122,7 +130,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Is there a contract?',
-    a: 'No long-term contract. You pay month to month and can cancel anytime.',
+    a: 'No. You pay month to month and can cancel anytime. If it works for you, you\'ll stay. If it doesn\'t, you shouldn\'t have to.',
   },
   {
     q: 'Is texting customers legal?',

@@ -13,40 +13,40 @@ type Section = {
 };
 const sections: Section[] = [
   {
-    eyebrow: 'Missed-call text-back', title: 'Turn missed calls', tail: 'into booked jobs',
-    body: 'When you can\'t pick up, the caller gets a text from your shop within seconds. They know you saw it, so they wait for you instead of calling someone else.',
-    checks: ['Text sent in seconds', 'Written in your words', 'Works with your number'], mock: 'phone',
+    eyebrow: 'Missed-call text-back', title: 'Missed a call?', tail: 'We text them back for you.',
+    body: 'Everyone misses calls. Not everyone texts back. When you can\'t pick up, the caller gets a text from your shop within seconds, so they know you\'re on it and don\'t move on to the next number on Google. Works at 2 PM on a job and at 2 AM while you sleep.',
+    checks: ['Text goes out in seconds', 'Sounds like you, not a robot', 'Keeps your current number', 'Works day and night'], mock: 'phone',
   },
   {
-    eyebrow: 'Lead tracking', title: 'See every caller', tail: 'and where they stand',
-    body: 'Each missed call is logged with the number, what they need and whether they replied. Nothing slips through because you were on a roof.',
-    checks: ['Every call logged', 'Clear status', 'Nothing forgotten'], mock: 'missed',
+    eyebrow: 'Lead list', title: 'Every caller,', tail: 'in one simple list',
+    body: 'Each missed call shows up with the number, what they need and whether they replied. Nothing slips through the cracks because you were up on a roof.',
+    checks: ['Every call saved', 'See who replied', 'Nothing forgotten'], mock: 'missed',
   },
   {
-    eyebrow: 'Review collection', title: 'More Google reviews,', tail: 'without asking in person',
-    body: 'After each job, customers get a friendly review request, then a few polite reminders over 45 days. The sequence stops as soon as they leave one.',
+    eyebrow: 'Google reviews', title: 'More Google reviews,', tail: 'without the awkward ask',
+    body: '"Sure, I\'ll leave you a review." Then they forget. After each job we send a friendly review request, then a few polite reminders for up to 45 days. It stops as soon as they leave one.',
     checks: ['Sent after every job', 'Stops when they review', 'Polite, never pushy'], mock: 'reviews',
   },
   {
-    eyebrow: 'Retention follow-up', title: 'Bring past customers', tail: 'back for the next job',
-    body: 'Seasonal check-ins go out on their own: furnace tune-ups, AC filters, water heater flushes. Work from people who already trust you.',
-    checks: ['Seasonal reminders', 'Repeat work', 'Runs on its own'], mock: 'followup',
+    eyebrow: 'Repeat customers', title: 'Get the next job', tail: 'from people who already trust you',
+    body: 'Repeat customers are the easiest jobs to win. We send them a reminder when it\'s time: furnace tune-ups, AC check-ups, water heater flushes. They call you instead of searching again.',
+    checks: ['Seasonal reminders', 'More repeat work', 'Runs on its own'], mock: 'followup',
   },
   {
-    eyebrow: 'Website included', title: 'A website that', tail: 'gets you calls',
-    body: 'Both plans include a fast, phone-friendly website for your shop. We build it, host it and keep it running. On Growth, a chat on the site collects job details for you.',
-    checks: ['Built and hosted for you', 'Big call button', 'Chat on Growth'], mock: 'website',
+    eyebrow: 'Your website', title: 'A website that', tail: 'gets the phone ringing',
+    body: 'Both plans come with a clean, phone-friendly website for your shop. Big call button, your services, your service area. We build it, host it and keep it running. On Growth, a chat on the site collects job details for you.',
+    checks: ['We build and host it', 'Big call button', 'Looks good on phones', 'Chat on Growth'], mock: 'website',
   },
   {
     eyebrow: 'On your phone', title: 'No new app.', tail: 'Just texts.',
-    body: 'New leads, replies and reviews show up as texts on the phone you already carry. Text back when you have a minute. That\'s the whole system.',
+    body: 'New leads, replies and reviews show up as texts on the phone you already carry. Text back when you have a minute. If you can send a text, you can use this.',
     checks: ['Alerts by text', 'Reply from your phone', 'Nothing to learn'], mock: 'notify',
   },
 ];
 const trades = ['Plumbing', 'HVAC', 'Drain & sewer', 'Water heaters', 'Heating & cooling', 'Owner-operators', 'Small crews'];
 const tick = '<path d="m5 12 5 5 9-10"/>';
 ---
-<Base mainCta title="Features"description="Missed-call text-back, lead tracking, review requests, customer follow-up and a website for plumbing and HVAC shops.">
+<Base mainCta title="Features" description="What you get with MVP Connection: a website, an automatic text when you miss a call, Google review requests and repeat-customer reminders. Built for plumbing and HVAC shops.">
   <!-- HERO: centered icon tile over light beams, like the reference -->
   <section class="relative overflow-hidden pb-10 pt-16 text-center md:pt-20">
     <Beams intensity={1.4} />
@@ -55,9 +55,9 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
       <div class="glass-logo mx-auto -mb-4 max-w-[28rem]">
         <FeaturesHeroLogo client:load />
       </div>
-      <p class="eyebrow hero-in d1 mt-2">Everything in one system</p>
-      <h1 class="hero-in d2 mx-auto mt-5 max-w-3xl text-[2.6rem] sm:text-6xl lg:text-[4.2rem]">One system that answers <span class="fade-tail">when you can't</span></h1>
-      <p class="hero-in d3 mx-auto mt-6 max-w-xl text-[1.08rem] text-muted">Stop losing jobs between the ring and the voicemail. MVP Connection texts back, follows up and asks for reviews, all under one roof.</p>
+      <p class="eyebrow hero-in d1 mt-2">What you get</p>
+      <h1 class="hero-in d2 mx-auto mt-5 max-w-3xl text-[2.6rem] sm:text-6xl lg:text-[4.2rem]">Simple tools that work <span class="fade-tail">while you're on the job</span></h1>
+      <p class="hero-in d3 mx-auto mt-6 max-w-xl text-[1.08rem] text-muted">A website, a text back when you miss a call, more Google reviews and more repeat customers. Here's how each part works, in plain English.</p>
       <div class="hero-in d4 mt-8"><a href="/book" data-goal="Book Click" data-main-cta class="btn btn-accent">Book a 15-minute call</a></div>
     </div>
 
@@ -101,7 +101,7 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
   </div>
 
   <Faq />
-  <CtaCard title="Run your phone better," tail="book with confidence." />
+  <CtaCard title="Still not sure?" tail="We'll show you in 15 minutes." />
 </Base>
 
 <style>

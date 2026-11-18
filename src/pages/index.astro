@@ -14,23 +14,34 @@ const faqSchema = {
   mainEntity: FAQ.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
 };
 
+// Plain "what you get" row: the four things we sell, one line each.
 const facts = [
-  { big: 'Seconds', small: 'to text a missed caller back, day or night' },
-  { big: '45 days', small: 'of polite review requests after each job' },
-  { big: '14 days', small: 'free on either plan. We do the setup' },
+  { big: 'Website', small: 'A clean site for your shop. We build it and keep it running.' },
+  { big: 'Text-back', small: 'Miss a call and the caller gets a text from you in seconds.' },
+  { big: 'Reviews', small: 'Every customer gets asked for a Google review. We do the asking.' },
+  { big: 'Repeat jobs', small: 'Past customers get a reminder when it\'s time for service again.' },
 ];
 
 const useCases = [
-  { t: 'Plumbing shops', d: 'You are under a sink when the phone rings. The caller still hears from you right away.', icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>' },
+  { t: 'Plumbing shops', d: 'You\'re under a sink when the phone rings. The caller still hears from you right away.', icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>' },
   { t: 'HVAC companies', d: 'Busy season means missed calls. Every one of them gets a reply and a way to book.', icon: '<path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>' },
-  { t: 'Owner-operators', d: 'No office staff? It works like a front desk that never takes a lunch break.', icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>' },
+  { t: 'Owner-operators', d: 'No one in the office? It works like a front desk that never takes a lunch break.', icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>' },
   { t: 'Small crews', d: 'Leads land on your phone, so whoever is free can call back and book.', icon: '<circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0M12 20a6 6 0 0 1 10 0"/>' },
 ];
 
+// "What working with us looks like"
 const steps = [
-  { n: '01', t: 'We set it up', d: 'One short call. We connect your line and write the texts with you.' },
-  { n: '02', t: 'A call gets missed', d: 'The caller gets a text from your shop within seconds.' },
-  { n: '03', t: 'You book the job', d: 'Their reply lands on your phone. Text back when you can.' },
+  { n: '01', t: '15-minute call', d: 'We show you how it works on a real phone and answer your questions. If it\'s not a fit, we\'ll tell you.' },
+  { n: '02', t: 'We build it', d: 'You fill out a short form about your shop. We build your website, write your texts and connect your number.' },
+  { n: '03', t: 'You go live', d: 'We walk you through it. From then on you just answer texts on your phone. That\'s it.' },
+];
+
+// Why us: only things that are true about how we work.
+const whyUs = [
+  { t: 'Done for you', d: 'We set it up and keep it running. You don\'t need to be good with computers.' },
+  { t: 'No contract', d: 'Month to month. If it works, you\'ll stay. If not, cancel anytime.' },
+  { t: 'Free to try', d: 'Try it free for 14 days on either plan before you pay anything.' },
+  { t: 'Straight answers', d: 'We tell you what we\'ll do and then do it. No marketing fluff.' },
 ];
 ---
 <Base schema={[faqSchema]} mainCta>
@@ -39,18 +50,18 @@ const steps = [
     <Beams />
     <div class="wrap relative grid items-center gap-2 md:grid-cols-[1.1fr_.9fr] md:gap-8">
       <div class="order-2 md:order-1">
-        <p class="eyebrow hero-in">Built for plumbing &amp; HVAC shops</p>
+        <p class="eyebrow hero-in">Websites &amp; automatic texting for plumbers and HVAC</p>
         <h1 class="hero-in d1 mt-5 text-[2.6rem] sm:text-6xl lg:text-[4.4rem]">
-          Every missed call, <span class="text-accent">texted back</span> <span class="fade-tail">in seconds</span>
+          Missed a call? <span class="text-accent">We text them back</span> <span class="fade-tail">before they call someone else.</span>
         </h1>
         <p class="hero-in d2 mt-6 max-w-lg text-[1.1rem] text-muted">
-          When you can't pick up, we text the caller right away, so they wait for you instead of calling the next shop. We set it all up. You keep working.
+          We build your website and set up simple texts that win you more jobs: a text back when you miss a call, a Google review request after every job, and reminders that bring old customers back. All on your phone. We do the setup.
         </p>
         <div class="hero-in d3 mt-8 flex flex-wrap gap-3">
           <a href="/book" data-goal="Book Click" data-main-cta class="btn btn-accent">Book a 15-minute call</a>
           <a href="/pricing" class="btn btn-dark">See pricing</a>
         </div>
-        <p class="hero-in d4 mt-6 text-[0.9rem] text-dim">{PILOT.headline} · Keep your number · Website included</p>
+        <p class="hero-in d4 mt-6 text-[0.9rem] text-dim">{PILOT.headline} · No contract · Keep your number</p>
       </div>
       <div class="order-1 md:order-2">
         <ChromeLogo3D class="mx-auto aspect-square w-[min(78vw,20rem)] md:w-full md:max-w-[34rem]" />
@@ -79,12 +90,13 @@ const steps = [
     </div>
   </section>
 
-  <!-- FACTS (no invented statistics: these describe the service) -->
+  <!-- WHAT YOU GET: the four things we sell, in plain words -->
   <section class="wrap py-20 md:py-28">
-    <div class="grid divide-y divide-line md:grid-cols-3 md:divide-x md:divide-y-0">
+    <p class="text-center text-[0.95rem] text-muted">Here's what you get, for one monthly price:</p>
+    <div class="mt-10 grid divide-y divide-line sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x">
       {facts.map((f, i) => (
-        <div class={`px-4 py-8 text-center md:py-2`}>
-          <p class="silver text-5xl font-semibold tracking-[-0.04em] md:text-6xl">{f.big}</p>
+        <div class={`px-4 py-8 text-center lg:py-2`}>
+          <p class="silver text-4xl font-semibold tracking-[-0.04em] md:text-[2.6rem]">{f.big}</p>
           <p class="mx-auto mt-3 max-w-[15rem] text-muted">{f.small}</p>
         </div>
       ))}
@@ -94,40 +106,40 @@ const steps = [
   <!-- FEATURES BENTO -->
   <section class="wrap py-10 md:py-16">
     <div class="text-center">
-      <p class="eyebrow">Features</p>
-      <h2 class="mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Everything that wins the job, <span class="fade-tail">handled for you</span></h2>
+      <p class="eyebrow">What we do</p>
+      <h2 class="mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Simple tools that win more jobs. <span class="fade-tail">No tech skills needed.</span></h2>
     </div>
     <div class="mt-14 grid gap-4 md:grid-cols-2">
       <article class="card spot overflow-hidden p-6 md:p-8">
         <h3 class="text-[1.35rem]">Missed-call text-back</h3>
-        <p class="mt-2 max-w-sm text-muted">Every missed call gets a text from your shop right away, so the job doesn't go to the next number on Google.</p>
+        <p class="mt-2 max-w-sm text-muted">On a job and can't pick up? We text the caller back in seconds, so they wait for you instead of calling the next plumber on Google.</p>
         <Mock kind="missed" class="mt-7" />
       </article>
       <article class="card spot overflow-hidden p-6 md:p-8">
-        <h3 class="text-[1.35rem]">45-day review collection</h3>
-        <p class="mt-2 max-w-sm text-muted">After each job, customers get a friendly ask for a Google review, plus a few polite reminders.</p>
+        <h3 class="text-[1.35rem]">More Google reviews</h3>
+        <p class="mt-2 max-w-sm text-muted">Customers say "sure, I'll leave a review" and then forget. We remind them politely for up to 45 days, and stop the moment they leave one.</p>
         <Mock kind="reviews" class="mt-7" />
       </article>
     </div>
     <div class="mt-4 grid gap-4 md:grid-cols-3">
       <article class="card spot overflow-hidden p-6">
-        <h3 class="text-[1.15rem]">Retention follow-up</h3>
-        <p class="mt-2 text-[0.95rem] text-muted">Seasonal check-ins bring past customers back.</p>
+        <h3 class="text-[1.15rem]">Repeat customers</h3>
+        <p class="mt-2 text-[0.95rem] text-muted">Tune-up season? Past customers get a reminder, so the next job comes to you.</p>
         <Mock kind="followup" class="mt-6" />
       </article>
       <article class="card spot overflow-hidden p-6">
-        <h3 class="text-[1.15rem]">Your website, included</h3>
-        <p class="mt-2 text-[0.95rem] text-muted">A fast site for your shop on both plans.</p>
+        <h3 class="text-[1.15rem]">A website that gets calls</h3>
+        <p class="mt-2 text-[0.95rem] text-muted">Looks good on a phone, has a big call button. We build it and host it.</p>
         <Mock kind="website" class="mt-6" />
       </article>
       <article class="card spot overflow-hidden p-6">
-        <h3 class="text-[1.15rem]">Leads on your phone</h3>
-        <p class="mt-2 text-[0.95rem] text-muted">No app to learn. It all shows up as texts.</p>
+        <h3 class="text-[1.15rem]">Everything on your phone</h3>
+        <p class="mt-2 text-[0.95rem] text-muted">New leads show up as texts. If you can text, you can use this.</p>
         <Mock kind="notify" class="mt-6" />
       </article>
     </div>
     <div class="mt-10 text-center">
-      <a href="/features" class="btn btn-dark">See all features
+      <a href="/features" class="btn btn-dark">See how each part works
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
       </a>
     </div>
@@ -138,8 +150,8 @@ const steps = [
     <div class="grid gap-12 md:grid-cols-2 md:gap-16">
       <div class="md:sticky md:top-28 md:self-start">
         <p class="eyebrow">Who it's for</p>
-        <h2 class="mt-4 text-4xl md:text-[3.1rem]">For shops that <span class="fade-tail">can't stop to answer</span></h2>
-        <p class="mt-5 max-w-md text-muted">You do the work with your hands. We make sure the phone doesn't cost you jobs while you do it.</p>
+        <h2 class="mt-4 text-4xl md:text-[3.1rem]">For shops that are <span class="fade-tail">too busy to answer</span></h2>
+        <p class="mt-5 max-w-md text-muted">You're good at the work. You just can't be on a job and on the phone at the same time. That's the part we handle.</p>
       </div>
       <ul class="grid gap-3">
         {useCases.map((u, i) => (
@@ -158,8 +170,8 @@ const steps = [
   <section class="relative py-10 md:py-16">
     <div class="wrap text-center">
       <p class="eyebrow">How it works</p>
-      <h2 class="mt-4 text-4xl md:text-[3.25rem]">How it all comes together</h2>
-      <p class="mx-auto mt-4 max-w-xl text-muted">Missed calls become texts, texts become booked jobs, and booked jobs become reviews. You just see the results.</p>
+      <h2 class="mt-4 text-4xl md:text-[3.25rem]">What working with us <span class="fade-tail">looks like</span></h2>
+      <p class="mx-auto mt-4 max-w-xl text-muted">Three steps. Your part is a short call and a short form. We do the rest.</p>
     </div>
     <div class="wrap relative mt-12">
       <div class="card relative overflow-hidden p-3 md:p-10">
@@ -174,6 +186,22 @@ const steps = [
           </li>
         ))}
       </ol>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="wrap pt-24 md:pt-32">
+    <div class="text-center">
+      <p class="eyebrow">Why MVP Connection</p>
+      <h2 class="mt-4 text-4xl md:text-[3.25rem]">Simple, fair, <span class="fade-tail">no strings attached</span></h2>
+    </div>
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {whyUs.map((w) => (
+        <div class="card p-6">
+          <h3 class="text-[1.12rem]">{w.t}</h3>
+          <p class="mt-2 text-[0.95rem] text-muted">{w.d}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -209,7 +237,7 @@ const steps = [
   )}
 
   <Faq />
-  <CtaCard />
+  <CtaCard title="Want to see it" tail="on your own phone?" />
 </Base>
 
 <style>

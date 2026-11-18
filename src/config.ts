@@ -7,7 +7,7 @@ export const SITE = {
   name: 'MVP Connection',
   shortName: 'MVP',
   // TODO(fill-in): real domain (also update `site` in astro.config.mjs)
-  url: 'https://www.example.com',
+  url: 'https://mvpconnection.co',
   // TODO(fill-in): real US business phone. 555-01xx numbers are reserved for fiction.
   phoneDisplay: '(555) 010-0199',
   phoneHref: '+15550100199',

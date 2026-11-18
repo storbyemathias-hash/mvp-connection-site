@@ -17,7 +17,7 @@
 - Testimonials are hidden while `TESTIMONIALS` is empty (no invented social proof)
 
 ## Open issues
-- Placeholders in `src/config.ts`: phone (555) 010-0199, email, domain (example.com), legal name/address
+- Placeholders in `src/config.ts`: phone (555) 010-0199, email, legal name/address (domain is set: mvpconnection.co)
 - GHL calendar embed, chat widget and form webhook are empty (the form shows a "not connected" message)
 - `PLAUSIBLE_DOMAIN` is empty, so analytics is off
 - Privacy/Terms are drafts and need a lawyer's review

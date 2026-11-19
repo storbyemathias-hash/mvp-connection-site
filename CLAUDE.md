@@ -2,7 +2,8 @@
 
 Marketing site for MVP Connection, a 2-person startup selling a done-for-you automation bundle
 to US plumbing/HVAC contractors: missed-call text-back, 45-day review collection,
-retention follow-up, website + chat. Main goal: book a 15-min call. Second goal: capture a phone number.
+retention follow-up, website + chat. Contact: GHL chat bubble (every page), phone, email.
+The /book page and callback form are parked in `src/parked/` (not built).
 Copy is plain American English; the user speaks Norwegian in chat.
 
 ## Stack
@@ -14,9 +15,10 @@ Copy is plain American English; the user speaks Norwegian in chat.
 
 ## Structure
 - `src/config.ts` – ALL editable content: SITE info, PILOT, PLANS, COMPARE, FAQ, TESTIMONIALS, GHL slots, Plausible domain
-- `src/pages/` – index, features, pricing, book, thanks, privacy, terms
-- `src/layouts/` – `Base.astro` (header, footer, mobile call bar, global scripts), `Legal.astro` (DRAFT banner)
-- `src/components/` – PhoneDemo, Mock, ChromeLogo3D, FeaturesHeroLogo + `liquid-glass-logo*` (ReactDrops, keep verbatim), LeadForm, Faq, CtaCard, Beams
+- `src/pages/` – index, features, pricing, privacy, terms (legal text = owner's templates, keep wording)
+- `src/layouts/` – `Base.astro` (header, footer, mobile call button, GHL chat script, global scripts), `Legal.astro`
+- `src/components/` – PhoneDemo, Mock, ChromeLogo3D, FeaturesHeroLogo + `liquid-glass-logo*` (ReactDrops, keep verbatim), Faq, CtaCard, Beams
+- `src/parked/` – removed pages/forms and old legal drafts, with restore steps in its README
 - `src/scripts/chrome-logo.ts`, `src/lib/logo.ts` – 3D logo
 - `public/` – logo.svg, favicon.svg, img/og.png
 
@@ -27,12 +29,12 @@ Copy is plain American English; the user speaks Norwegian in chat.
   (`--accent #FF6A1A`, `--accent-hover #FF8140`, `--on-accent #0B0B0B`). Use `text-accent`/`bg-accent`/`btn-accent`; never hardcode orange.
 - Orange only on: primary CTAs, "texted back" hero phrase, header phone icon, link hover, active nav underline,
   step numbers, pricing checks, Recommended badge, focus ring. Never large backgrounds or body text; max 1–2 orange things in view.
-- Repeat CTAs (header/mobile bar) use `.cta-dup`; pages pass `mainCta` to Base and mark the hero CTA `data-main-cta` so dups turn white while it is visible.
+- Orange-duplicate logic (`.cta-dup`, `data-main-cta`, `mainCta` prop) is still in Base/global.css but unused since /book was parked.
 - Secondary buttons: `btn-dark`. Mockup status chips: ok green, wait amber, miss neutral grey (no red).
 - Website is included in both plans (Recovery $197, Growth $297 featured). There is no "Answer" plan.
 - Glass effect only on the floating header and mobile bottom bar (Apple design skill rules).
 - Respect prefers-reduced-motion / prefers-contrast; visible focus ring; body text 17px; contrast AA or better.
-- SMS consent (A2P 10DLC): two optional, never pre-checked checkboxes in LeadForm. Legal pages stay marked DRAFT for a lawyer.
+- A2P 10DLC: business is Storbye MVP Connection (sole proprietorship, Norway, org. no. 938 893 586). Don't rewrite legal commitments without the owner.
 - Plausible goals via `data-goal="..."` attributes. Mobile-first, click-to-call everywhere.
 - Lighthouse 90+ target (exception accepted: /features mobile performance due to Liquid Glass on load).
 

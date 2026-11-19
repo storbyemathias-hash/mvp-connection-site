@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE, PLAUSIBLE_DOMAIN, GHL } from '../config';
+import { SITE, PLAUSIBLE_DOMAIN } from '../config';
 import LogoMark from '../components/LogoMark.astro';
 
 interface Props {
@@ -79,10 +79,9 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
           ))}
         </nav>
         <div class="flex items-center gap-2">
-          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="hidden items-center gap-2 px-2 text-[0.92rem] text-text lg:inline-flex">
+          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="hidden items-center gap-2 px-2 text-[0.92rem] text-text md:inline-flex">
             <svg class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={phoneIcon} />{SITE.phoneDisplay}
           </a>
-          <a href="/book" data-goal="Book Click" class="btn btn-accent cta-dup !min-h-10 !px-4 !text-[0.9rem]">Book a call</a>
           <button id="menu-btn" class="grid h-10 w-10 place-items-center rounded-full text-text md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
           </button>
@@ -91,7 +90,7 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
       <nav id="mobile-menu" class="wrap hidden pb-4 md:hidden" aria-label="Mobile">
         <div class="card grid p-2">
           {nav.map((n) => <a href={n.href} class="rounded-xl px-4 py-3.5 text-[1.05rem] hover:bg-surface-3" aria-current={path === n.href ? 'page' : undefined}>{n.label}</a>)}
-          <a href="/book" class="rounded-xl px-4 py-3.5 text-[1.05rem] hover:bg-surface-3">Book a call</a>
+          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="rounded-xl px-4 py-3.5 text-[1.05rem] hover:bg-surface-3">Call {SITE.phoneDisplay}</a>
         </div>
       </nav>
     </header>
@@ -112,7 +111,6 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
             <p class="mb-3 font-semibold">Pages</p>
             <ul class="space-y-2 text-muted">
               {nav.map((n) => <li><a class="link" href={n.href}>{n.label}</a></li>)}
-              <li><a class="link" href="/book">Book a call</a></li>
             </ul>
           </div>
           <div class="text-[0.92rem]">
@@ -126,7 +124,7 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
           </div>
         </div>
         <div class="relative z-10 mt-12 flex flex-col gap-1 text-[0.8rem] text-dim md:flex-row md:justify-between">
-          <p>&copy; {year} {SITE.name}. All rights reserved.</p>
+          <p>&copy; {year} {SITE.legalName} (trading as {SITE.name}). Org. no. {SITE.orgNo}. All rights reserved.</p>
           <p>Texts: reply STOP to opt out, HELP for help. Msg &amp; data rates may apply.</p>
         </div>
         <!-- Oversized wordmark fading into the card, like the reference -->
@@ -135,18 +133,14 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
       </div>
     </footer>
 
-    {path !== '/book' && (
-      <div class="fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 md:hidden">
-        <div class="glass grid grid-cols-[auto_1fr] gap-2 rounded-full p-1.5">
-          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="btn btn-dark !min-h-12 !px-5" aria-label={`Call ${SITE.phoneDisplay}`}>
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={phoneIcon} />Call
-          </a>
-          <a href="/book" data-goal="Book Click" class="btn btn-accent cta-dup !min-h-12">Book a 15-min call</a>
-        </div>
+    <!-- Mobile call button, bottom left (the chat bubble sits bottom right) -->
+    <div class="fixed left-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40 md:hidden">
+      <div class="glass rounded-full p-1.5">
+        <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="btn btn-dark !min-h-12 !px-5" aria-label={`Call ${SITE.phoneDisplay}`}>
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={phoneIcon} />Call
+        </a>
       </div>
-    )}
-
-    {GHL.chatWidget ? <Fragment set:html={GHL.chatWidget} /> : null}
+    </div>
 
     <script>
       const bar = document.getElementById('top-bar')!;
@@ -205,5 +199,6 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
         #top-bar.scrolled, #top-bar.menu-open, .glass { background: #0c0c0d; backdrop-filter: none; -webkit-backdrop-filter: none; }
       }
     </style>
+    <script is:inline src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6afef0c99df20d5d1f51ee16"></script>
   </body>
 </html>

@@ -6,16 +6,14 @@
 export const SITE = {
   name: 'MVP Connection',
   shortName: 'MVP',
-  // TODO(fill-in): real domain (also update `site` in astro.config.mjs)
   url: 'https://mvpconnection.co',
-  // TODO(fill-in): real US business phone. 555-01xx numbers are reserved for fiction.
-  phoneDisplay: '(555) 010-0199',
-  phoneHref: '+15550100199',
-  // TODO(fill-in): real contact email
-  email: 'hello@example.com',
-  // TODO(fill-in): legal entity name + mailing address (needed on legal pages and for 10DLC)
-  legalName: '[LEGAL ENTITY NAME]',
-  address: '[STREET, CITY, STATE ZIP]',
+  phoneDisplay: '(804) 729-9150',
+  phoneHref: '+18047299150',
+  email: 'contact@mvpconnection.co',
+  legalName: 'Storbye MVP Connection',
+  legalForm: 'sole proprietorship, Norway',
+  orgNo: '938 893 586',
+  address: 'Gartnerisvingen 51, 1481 Hagan, Norway',
   description:
     'We build your website and set up automatic texts that win you more jobs: a text back when you miss a call, Google review requests and reminders for past customers. For plumbing and HVAC shops. Free 14-day trial.',
 };
@@ -30,21 +28,8 @@ export const PILOT = {
 // TODO(fill-in): your Plausible site domain, e.g. "mvpconnection.com"
 export const PLAUSIBLE_DOMAIN = '';
 
-/**
- * GoHighLevel slots. Paste the raw snippets GHL gives you between the backticks.
- * Until they are filled, the site shows clearly marked placeholders.
- */
-export const GHL = {
-  // TODO(fill-in): Calendar > Share > Embed code (iframe + script)
-  calendarEmbed: ``,
-  // TODO(fill-in): Sites > Chat widget > Get code
-  chatWidget: ``,
-  /**
-   * TODO(fill-in): Automation > Workflows > trigger "Inbound Webhook" > copy URL.
-   * Our own short form posts JSON here (name, phone, company, trade, consent flags).
-   */
-  formWebhookUrl: '',
-};
+/* The GHL chat widget script lives in src/layouts/Base.astro.
+   The calendar embed and form webhook slots are parked: see src/parked/README.md. */
 
 export type Plan = {
   name: string;

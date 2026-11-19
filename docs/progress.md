@@ -1,36 +1,34 @@
 # Progress
 
 ## Done
-- 7 pages build and work: Home, Features, Pricing, Book, Thanks, Privacy, Terms (+ sitemap, JSON-LD, OG image)
-- Graphite design in the style of projectise.framer.ai, with an iPhone mockup in the hero instead of a desktop screenshot
-- 3D chrome MVP logo on Home (one turn about 20 s); Liquid Glass logo animation at the top of /features
-- Orange accent applied per the rules in CLAUDE.md; contrast checked (orange CTA 6.87:1, orange text 7.11:1)
-- Lead form with 10DLC consent; mobile call bar; Plausible goal attributes; README with deploy guide and fill-in list
-- Lighthouse mobile: Home 100 on all categories, Pricing 100 for performance, Features performance 28 (94 on desktop)
+- Live on Cloudflare Pages (auto-deploy on push to main); domain mvpconnection.co
+- 5 pages: Home, Features, Pricing, Privacy, Terms (+ sitemap, JSON-LD, OG image)
+- Graphite design, iPhone mockup hero, 3D chrome logo on Home, Liquid Glass logo on /features
+- Plain contractor copy (website + automatic texts); scroll "pop-in" animations removed
+- A2P prep (19 Nov 2026): real phone (804) 729-9150, contact@mvpconnection.co, legal identity
+  (Storbye MVP Connection, org. no. 938 893 586); GHL chat widget on every page;
+  /privacy and /terms replaced with the owner's templates
+- /book, calendar slot, callback form and /thanks parked in `src/parked/` (tag `pre-a2p-forms`)
 
 ## Decisions
-- Website is included in both plans; the Answer plan was removed (user's request)
-- Free 14-day trial as the offer; "Recommended" badge, because "Most popular" can't be verified
-- three.js loads on first interaction or after 5 s, so Home stays at Lighthouse 100
-- Liquid Glass loads on page load even though it costs mobile performance (user chose "Keep it on load")
-- Orange is the only warm color: "Missed call" chips are grey, not red, so they don't compete with it
+- Website is included in both plans; "Recommended" badge, not "Most popular"
+- Contact is now the chat bubble, phone and email; no booking page for the A2P review
+- Legal template wording is kept as-is; only merge fields were filled
+- Liquid Glass loads on page load even though it costs mobile performance (user's choice)
 - Testimonials are hidden while `TESTIMONIALS` is empty (no invented social proof)
 
 ## Open issues
-- Placeholders in `src/config.ts`: phone (555) 010-0199, email, legal name/address (domain is set: mvpconnection.co)
-- GHL calendar embed, chat widget and form webhook are empty (the form shows a "not connected" message)
+- Legal templates describe web-form opt-in, appointments, payments and accounts the site doesn't have
+- Governing Law says "the state in which ... operates" (business is in Norway)
+- Demo mockups still show fictional (555) 010-01xx caller numbers
 - `PLAUSIBLE_DOMAIN` is empty, so analytics is off
-- Privacy/Terms are drafts and need a lawyer's review
 - /features mobile performance is 28 (accepted for now)
-- `@fontsource-variable/archivo` is installed but not used
-- Not a git repo yet
 
 ## Next steps
-1. Fill in real business info, domain and the GHL embeds/webhook in `src/config.ts`
-2. Confirm plan contents, prices and FAQ answers with the cofounder
-3. `git init`, then deploy to Cloudflare Pages/Netlify (README.md) and set the Plausible domain
-4. Send the legal pages to a lawyer; send the 10DLC campaign for registration
-5. Possibly lazy-load Liquid Glass on mobile if Features needs a better score
+1. Decide how the legal templates should match the chat-widget opt-in, then get them reviewed
+2. Check the GHL chat widget's SMS consent text before submitting the 10DLC campaign
+3. Confirm plan contents, prices and FAQ answers with the cofounder
+4. Set the Plausible domain
 
 ## Read first
-`CLAUDE.md`, `src/config.ts`, `src/styles/global.css`, `src/layouts/Base.astro`, `src/pages/index.astro`, `README.md`
+`CLAUDE.md`, `src/config.ts`, `src/layouts/Base.astro`, `src/parked/README.md`, `README.md`

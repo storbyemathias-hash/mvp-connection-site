@@ -44,7 +44,7 @@ const whyUs = [
   { t: 'Straight answers', d: 'We tell you what we\'ll do and then do it. No marketing fluff.' },
 ];
 ---
-<Base schema={[faqSchema]} mainCta>
+<Base schema={[faqSchema]}>
   <!-- HERO -->
   <section class="relative overflow-hidden pt-24 md:pt-28">
     <Beams />
@@ -58,9 +58,10 @@ const whyUs = [
           We build your website and set up simple texts that win you more jobs: a text back when you miss a call, a Google review request after every job, and reminders that bring old customers back. All on your phone. We do the setup.
         </p>
         <div class="hero-in d3 mt-8 flex flex-wrap gap-3">
-          <a href="/book" data-goal="Book Click" data-main-cta class="btn btn-accent">Book a 15-minute call</a>
-          <a href="/pricing" class="btn btn-dark">See pricing</a>
+          <a href="/pricing" class="btn btn-accent">See pricing</a>
+          <a href="/features" class="btn btn-dark">How it works</a>
         </div>
+        <p class="hero-in d4 mt-5 text-[0.95rem] text-muted">Questions? Chat with us in the bottom corner.</p>
         <p class="hero-in d4 mt-6 text-[0.9rem] text-dim">{PILOT.headline} · No contract · Keep your number</p>
       </div>
       <div class="order-1 md:order-2">

@@ -1,0 +1,61 @@
+---
+import Legal from '../layouts/Legal.astro';
+import { SITE } from '../config';
+---
+<Legal title="Privacy Policy" updated="[DATE]">
+  <p>This Privacy Policy explains how {SITE.legalName} ("{SITE.name}", "we", "us") collects, uses and protects information when you visit {SITE.url} or communicate with us, including by text message.</p>
+
+  <h2>Information we collect</h2>
+  <ul>
+    <li><b>Information you give us:</b> your name, phone number, email, company name, trade and anything you write in a form, chat or message.</li>
+    <li><b>Booking information:</b> the time you pick and details you add when you book a call.</li>
+    <li><b>Usage data:</b> we use Plausible Analytics, which measures page visits without cookies and without collecting personal data that identifies you.</li>
+  </ul>
+
+  <h2>How we use your information</h2>
+  <ul>
+    <li>To respond to your inquiry, schedule calls and provide our services.</li>
+    <li>To send text messages you have agreed to receive (see "Text messaging" below).</li>
+    <li>To operate, secure and improve our website and services.</li>
+    <li>To comply with legal obligations.</li>
+  </ul>
+
+  <h2>Text messaging (SMS)</h2>
+  <p>If you opt in, we send text messages about your inquiry, scheduling and customer care, and, only if you opt in separately, occasional marketing messages. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out at any time, or HELP for help.</p>
+  <p><b>No mobile information will be shared with third parties or affiliates for marketing or promotional purposes.</b> Text messaging originator opt-in data and consent will not be shared with any third parties. Information may be shared with subcontractors that help us deliver messages (for example our messaging platform and phone carriers), only to provide the service.</p>
+  <p><b>We do not sell, rent or share your phone number for marketing purposes.</b></p>
+
+  <h2>Who we share information with</h2>
+  <p>We share information only with service providers that help us run our business, under agreements that limit their use of it:</p>
+  <ul>
+    <li>Our CRM and messaging platform (HighLevel / LeadConnector) [CONFIRM]</li>
+    <li>Website hosting [Cloudflare / Netlify]</li>
+    <li>Analytics (Plausible Analytics)</li>
+  </ul>
+  <p>We may also disclose information if required by law or to protect our rights.</p>
+
+  <h2>Data retention</h2>
+  <p>We keep your information as long as needed for the purposes above, or as required by law. [CONFIRM retention period]</p>
+
+  <h2>Your choices and rights</h2>
+  <ul>
+    <li>Reply STOP to any text to stop messages.</li>
+    <li>Ask us to access, correct or delete your information by emailing <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</li>
+    <li>Depending on your state (for example California), you may have additional rights. We will respond as required by applicable law. [ATTORNEY: confirm state-law sections needed]</li>
+  </ul>
+
+  <h2>Security</h2>
+  <p>We use reasonable safeguards to protect your information. No method of transmission or storage is 100% secure.</p>
+
+  <h2>Children</h2>
+  <p>Our services are for businesses and are not directed to children under 13. We do not knowingly collect their information.</p>
+
+  <h2>International processing</h2>
+  <p>Part of our team works outside the United States (Norway). Your information may be accessed from there to provide our services. [ATTORNEY: confirm wording]</p>
+
+  <h2>Changes</h2>
+  <p>We may update this policy. The "Last updated" date shows the latest version.</p>
+
+  <h2>Contact</h2>
+  <p>{SITE.legalName}<br />{SITE.address}<br /><a href={`mailto:${SITE.email}`}>{SITE.email}</a> · <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a></p>
+</Legal>

@@ -56,32 +56,26 @@ Netlify works the same way: build command `npm run build`, publish directory `di
 
 ## What you must fill in before launch
 
-Search the project for `TODO(fill-in)`, `[BRACKETED]` and `[CONFIRM]`.
+Search the project for `TODO(fill-in)`.
 
-**Contact and domain**
-- [ ] Real US phone number (`SITE.phoneDisplay` + `SITE.phoneHref`). The current one is a fake 555 number.
-- [ ] Email, legal entity name and mailing address
-- [ ] Domain in 3 places (see Deploy step 5)
+**Contact and domain**: done (phone, email, legal name, address, domain in `src/config.ts`).
 
 **GoHighLevel**
-- [ ] `GHL.calendarEmbed`: calendar embed code (book page)
-- [ ] `GHL.chatWidget`: chat widget code (every page)
-- [ ] `GHL.formWebhookUrl`: create a workflow with trigger **Inbound Webhook**, paste the URL. Map `name`, `phone`, `company`, `trade`, `sms_consent_service`, `sms_consent_marketing` to contact fields. Only send texts to contacts whose consent flag is `true`.
+- [x] Chat widget script: in `src/layouts/Base.astro`, just before `</body>`.
+- The /book page, calendar embed and callback form are parked in `src/parked/` (see its README).
 
 **Analytics**
-- [ ] Create the site in Plausible and set `PLAUSIBLE_DOMAIN`. Optional goals: `Book Click`, `Call Click`, `Form Submit`.
+- [ ] Create the site in Plausible and set `PLAUSIBLE_DOMAIN`. Optional goal: `Call Click`.
 
 **Content to confirm (I wrote proposals)**
 - [ ] What each plan includes (`PLANS` and `COMPARE`). Answer is removed and the website is in both plans. "Website chat on Growth only" and "Priority support on Growth" are my proposals.
-- [ ] Trial terms (`PILOT.detail`, Terms page "Free trial" section). "Cancel anytime" and "no long-term contract" are in the FAQ.
+- [ ] Trial terms (`PILOT.detail`). "Cancel anytime" and "no long-term contract" are in the FAQ.
 - [ ] FAQ answers: keeping their number via call forwarding, no app needed, setup flow
-- [ ] "We'll call you back, usually the same business day" (book page)
-- [ ] Marketing SMS cap "up to 4 msgs/month" (form + Terms). It must match your 10DLC campaign registration.
 - [ ] Testimonials stay hidden until you add real ones to `TESTIMONIALS`.
 
-**Legal (marked DRAFT on the page)**
-- [ ] Have a US attorney review `/privacy` and `/terms`, fill `[DATE]`, `[STATE]`, the vendor list and the retention period, then remove the DRAFT banner in `src/layouts/Legal.astro`.
-- [ ] For 10DLC registration, the campaign's opt-in description should point to the form on the site and quote the consent text exactly.
+**Legal**
+- [ ] `/privacy` and `/terms` use the owner's templates (effective 19 November 2026). Have them reviewed.
+  Old drafts are in `src/parked/`. `/privacy-policy` redirects to `/privacy` (`public/_redirects`).
 
 **Assets**
 - [ ] `public/img/og.png` is a quick generated share image. Replace it with a designed 1200×630 version if you like.

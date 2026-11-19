@@ -33,7 +33,6 @@ const offerSchema = {
             {p.featured && <span class="chip bg-accent text-on-accent">Recommended</span>}
           </div>
           <p class="mt-5 flex items-baseline gap-2"><span class="silver text-6xl font-semibold tracking-[-0.045em]">${p.price}</span><span class="text-muted">/ month</span></p>
-          <a href="/book" data-goal="Book Click" class={`btn mt-7 w-full ${p.featured ? 'btn-white' : 'btn-dark'}`}>Start free trial</a>
           <p class="mt-6 text-muted">{p.pitch}</p>
           <ul class="mt-6 flex-1 space-y-3.5 border-t border-line pt-6 text-[0.97rem]">
             {p.features.map((f) => (
@@ -44,6 +43,7 @@ const offerSchema = {
       ))}
     </div>
     <p class="mt-6 text-center text-[0.9rem] text-dim">Prices in USD, billed monthly. Cancel anytime.</p>
+    <p class="mt-2 text-center text-[0.95rem] text-muted">Questions? Chat with us in the bottom corner.</p>
   </section>
 
   <!-- COMPARISON TABLE (reference-style "Yes" table) -->

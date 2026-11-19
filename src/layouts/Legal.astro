@@ -1,16 +1,12 @@
 ---
 import Base from './Base.astro';
-interface Props { title: string; updated: string }
-const { title, updated } = Astro.props;
+interface Props { title: string; description?: string }
+const { title, description } = Astro.props;
 ---
-<Base title={title}>
+<Base title={title} description={description}>
   <article class="wrap max-w-3xl pb-16 pt-28 md:pt-36">
-    <div class="placeholder-slot mb-10">
-      <b>DRAFT, not legal advice.</b> This page must be reviewed by a US attorney before launch. Fill in every <code>[BRACKETED]</code> item.
-    </div>
     <p class="eyebrow">Legal</p>
     <h1 class="mt-4 text-4xl md:text-5xl">{title}</h1>
-    <p class="mt-3 text-dim">Last updated: {updated}</p>
     <div class="prose-legal mt-8"><slot /></div>
   </article>
 </Base>

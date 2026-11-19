@@ -1,12 +1,12 @@
 ---
 import Beams from './Beams.astro';
 import LogoTile from './LogoTile.astro';
-import { PILOT } from '../config';
+import { PILOT, SITE } from '../config';
 interface Props { title?: string; tail?: string; sub?: string }
 const {
   title = 'Catch every call,',
   tail = 'book more jobs.',
-  sub = `Book a 15-minute call. We'll show you exactly what you get and what it costs. ${PILOT.headline}, no contract.`,
+  sub = `We'll show you exactly what you get and what it costs. ${PILOT.headline}, no contract.`,
 } = Astro.props;
 ---
 <section class="wrap">
@@ -16,7 +16,8 @@ const {
       <LogoTile class="mx-auto" />
       <h2 class="mt-8 text-4xl md:text-[3.4rem]">{title}<br /><span class="fade-tail">{tail}</span></h2>
       <p class="mx-auto mt-4 max-w-md text-muted">{sub}</p>
-      <a href="/book" data-goal="Book Click" class="btn btn-accent mt-8">Book a 15-minute call</a>
+      <p class="mt-8 text-[1.05rem] text-text">Questions? Chat with us in the bottom corner.</p>
+      <p class="mt-2 text-[0.95rem] text-muted">Or call <a class="link underline" href={`tel:${SITE.phoneHref}`} data-goal="Call Click">{SITE.phoneDisplay}</a> · <a class="link underline" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
     </div>
   </div>
 </section>

@@ -81,7 +81,7 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
 
   {kind === 'notify' && (
     <div class="space-y-2 p-4">
-      {[['New lead', 'Leaking water heater · (555) 010-0142', 'now'], ['Reply received', '"Yes please, 2 to 4 works"', '2m'], ['Review posted', '★★★★★ on Google', '1h']].map(([t, d, ago], i) => (
+      {[['New message', 'Leaking water heater · (555) 010-0142', 'now'], ['Reply received', '"Yes please, 2 to 4 works"', '2m'], ['Review posted', '★★★★★ on Google', '1h']].map(([t, d, ago], i) => (
         <div class={`rounded-xl bg-surface-2 px-3 py-2.5 shadow-[inset_0_0_0_1px_var(--color-line)] ${i === 0 ? '' : 'opacity-70'}`}>
           <div class="flex items-center justify-between"><b class="font-medium text-text">{t}</b><span class="text-[0.68rem] text-dim">{ago}</span></div>
           <p class="mt-0.5 truncate text-dim">{d}</p>
@@ -93,7 +93,7 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
   {kind === 'leads' && (
     <div class="p-4 md:p-6">
       <div class="flex items-center justify-between">
-        <p class="text-[1rem] font-semibold text-text">Leads this week</p>
+        <p class="text-[1rem] font-semibold text-text">Calls this week</p>
         <span class="text-[0.72rem] text-dim">Example data</span>
       </div>
       <div class="mt-4 overflow-x-auto">

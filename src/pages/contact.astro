@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="Contact" description={`Contact ${SITE.name}: phone, email, address and live chat.`}>
+  <article class="wrap max-w-3xl pb-16 pt-28 md:pt-36">
+    <p class="eyebrow">Contact</p>
+    <h1 class="mt-4 text-4xl md:text-5xl">Contact us</h1>
+    <p class="mt-6 max-w-xl text-muted">Questions about our websites, customer texting or pricing? Reach us any of these ways.</p>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2">
+      <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="card spot block p-6">
+        <p class="text-[0.85rem] text-muted">Phone</p>
+        <p class="mt-2 text-[1.2rem] font-semibold">{SITE.phoneDisplay}</p>
+      </a>
+      <a href={`mailto:${SITE.email}`} class="card spot block p-6">
+        <p class="text-[0.85rem] text-muted">Email</p>
+        <p class="mt-2 break-all text-[1.2rem] font-semibold">{SITE.email}</p>
+      </a>
+      <div class="card p-6">
+        <p class="text-[0.85rem] text-muted">Chat</p>
+        <p class="mt-2 text-[1.05rem]">Use the chat bubble in the bottom corner of this page.</p>
+      </div>
+      <div class="card p-6">
+        <p class="text-[0.85rem] text-muted">Address</p>
+        <address class="mt-2 text-[1.05rem] not-italic">{SITE.legalName}<br />{SITE.address}</address>
+        <p class="mt-2 text-[0.85rem] text-muted">Org. no. {SITE.orgNo}</p>
+      </div>
+    </div>
+  </article>
+</Base>

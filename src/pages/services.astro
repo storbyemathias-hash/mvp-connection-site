@@ -18,7 +18,7 @@ const sections: Section[] = [
     checks: ['Text goes out in seconds', 'Sounds like you, not a robot', 'Keeps your current number', 'Works day and night'], mock: 'phone',
   },
   {
-    eyebrow: 'Lead list', title: 'Every caller,', tail: 'in one simple list',
+    eyebrow: 'Call log', title: 'Every customer call,', tail: 'in one simple list',
     body: 'Each missed call shows up with the number, what they need and whether they replied. Nothing slips through the cracks because you were up on a roof.',
     checks: ['Every call saved', 'See who replied', 'Nothing forgotten'], mock: 'missed',
   },
@@ -33,20 +33,20 @@ const sections: Section[] = [
     checks: ['Seasonal reminders', 'More repeat work', 'Runs on its own'], mock: 'followup',
   },
   {
-    eyebrow: 'Your website', title: 'A website that', tail: 'gets the phone ringing',
+    eyebrow: 'Your website', title: 'A clear website', tail: 'for your company',
     body: 'Both plans come with a clean, phone-friendly website for your shop. Big call button, your services, your service area. We build it, host it and keep it running. On Growth, a chat on the site collects job details for you.',
     checks: ['We build and host it', 'Big call button', 'Looks good on phones', 'Chat on Growth'], mock: 'website',
   },
   {
     eyebrow: 'On your phone', title: 'No new app.', tail: 'Just texts.',
-    body: 'New leads, replies and reviews show up as texts on the phone you already carry. Text back when you have a minute. If you can send a text, you can use this.',
+    body: 'Customer messages, replies and reviews show up as texts on the phone you already carry. Text back when you have a minute. If you can send a text, you can use this.',
     checks: ['Alerts by text', 'Reply from your phone', 'Nothing to learn'], mock: 'notify',
   },
 ];
 const trades = ['Plumbing', 'HVAC', 'Drain & sewer', 'Water heaters', 'Heating & cooling', 'Owner-operators', 'Small crews'];
 const tick = '<path d="m5 12 5 5 9-10"/>';
 ---
-<Base title="Features" description="What you get with MVP Connection: a website, an automatic text when you miss a call, Google review requests and repeat-customer reminders. Built for plumbing and HVAC shops.">
+<Base title="Services" description="Our services for plumbing and HVAC companies: a website, an automatic text when you miss a call, Google review requests and repeat-customer reminders. Built for plumbing and HVAC shops.">
   <!-- HERO: centered icon tile over light beams, like the reference -->
   <section class="relative overflow-hidden pb-10 pt-16 text-center md:pt-20">
     <Beams intensity={1.4} />
@@ -55,9 +55,9 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
       <div class="glass-logo mx-auto -mb-4 max-w-[28rem]">
         <FeaturesHeroLogo client:load />
       </div>
-      <p class="eyebrow hero-in d1 mt-2">What you get</p>
+      <p class="eyebrow hero-in d1 mt-2">Our services</p>
       <h1 class="hero-in d2 mx-auto mt-5 max-w-3xl text-[2.6rem] sm:text-6xl lg:text-[4.2rem]">Simple tools that work <span class="fade-tail">while you're on the job</span></h1>
-      <p class="hero-in d3 mx-auto mt-6 max-w-xl text-[1.08rem] text-muted">A website, a text back when you miss a call, more Google reviews and more repeat customers. Here's how each part works, in plain English.</p>
+      <p class="hero-in d3 mx-auto mt-6 max-w-xl text-[1.08rem] text-muted">A website, a text back when you miss a call, more Google reviews and more repeat customers. Here's how each service works, in plain English.</p>
       <p class="hero-in d4 mt-8 text-[0.95rem] text-muted">Questions? Chat with us in the bottom corner.</p>
     </div>
 
@@ -72,7 +72,7 @@ const tick = '<path d="m5 12 5 5 9-10"/>';
     </div>
   </section>
 
-  <!-- ALTERNATING FEATURE ROWS -->
+  <!-- ALTERNATING SERVICE ROWS -->
   <div class="wrap">
     {sections.map((s, i) => (
       <section class="grid items-center gap-10 border-t border-line py-20 first:border-t-0 md:grid-cols-2 md:gap-16 md:py-28">

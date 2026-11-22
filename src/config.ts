@@ -15,7 +15,7 @@ export const SITE = {
   orgNo: '938 893 586',
   address: 'Gartnerisvingen 51, 1481 Hagan, Norway',
   description:
-    'We build your website and set up automatic texts that win you more jobs: a text back when you miss a call, Google review requests and reminders for past customers. For plumbing and HVAC shops. Free 14-day trial.',
+    'We build your website and set up automatic customer texts: a text back when you miss a call, Google review requests and reminders for past customers. For plumbing and HVAC shops. Free 14-day trial.',
 };
 
 export const PILOT = {
@@ -49,7 +49,7 @@ export const PLANS: Plan[] = [
       'A website for your shop, built and hosted by us',
       'Miss a call? The caller gets a text in seconds',
       'Texts written the way you talk',
-      'New leads sent straight to your phone',
+      'Customer messages sent to your phone',
       'We do the setup',
     ],
   },
@@ -73,7 +73,7 @@ export const COMPARE: { row: string; recovery: boolean | string; growth: boolean
   { row: 'Website for your shop', recovery: true, growth: true },
   { row: 'Automatic text when you miss a call', recovery: true, growth: true },
   { row: 'Texts written the way you talk', recovery: true, growth: true },
-  { row: 'New leads sent to your phone', recovery: true, growth: true },
+  { row: 'Customer messages sent to your phone', recovery: true, growth: true },
   { row: 'Google review requests', recovery: false, growth: true },
   { row: 'Repeat-customer reminders', recovery: false, growth: true },
   { row: 'Chat on your website', recovery: false, growth: true },
@@ -91,7 +91,7 @@ export const TESTIMONIALS: { quote: string; name: string; company: string; city:
 export const FAQ: { q: string; a: string }[] = [
   {
     q: 'So what am I actually paying for?',
-    a: 'A website for your shop, plus automatic texts that win you more work: a text back when you miss a call, a Google review request after each job, and reminders that bring past customers back. We set it all up and keep it running for one monthly price.',
+    a: 'A website for your shop, plus automatic customer texts: a text back when you miss a call, a Google review request after each job, and reminders that bring past customers back. We set it all up and keep it running for one monthly price.',
   },
   {
     q: 'When will I see it working?',
@@ -103,7 +103,7 @@ export const FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Do I have to learn new software?',
-    a: 'No. If you can send a text, you can use this. New leads and replies show up as texts on your phone. There is an app if you want it, but you don\'t have to touch it.',
+    a: 'No. If you can send a text, you can use this. Customer messages and replies show up as texts on your phone. There is an app if you want it, but you don\'t have to touch it.',
   },
   {
     q: 'Is the website really included?',

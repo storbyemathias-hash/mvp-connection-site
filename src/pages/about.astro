@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base title="About us" description={`About ${SITE.legalName} (trading as ${SITE.name}): we build websites and customer texting tools for plumbing and HVAC companies in the United States.`}>
+  <article class="wrap max-w-3xl pb-16 pt-28 md:pt-36">
+    <p class="eyebrow">About us</p>
+    <h1 class="mt-4 text-4xl md:text-5xl">We build websites and customer texting for plumbing and HVAC companies</h1>
+    <div class="prose-legal mt-8">
+      <p>{SITE.name} is a small web and software services company. We build, host and maintain websites for plumbing and HVAC businesses in the United States, and we set up text messaging tools those businesses use to talk with their own customers.</p>
+
+      <h2>What we do</h2>
+      <ul>
+        <li><b>Websites:</b> we design, build and host a website for each client business, with its services, service area and contact details.</li>
+        <li><b>Missed-call text replies:</b> when a customer calls the business and nobody can answer, the customer gets a text from that business saying the call was received.</li>
+        <li><b>Google review requests:</b> after a finished job, the business's customer gets a text asking for a review.</li>
+        <li><b>Service reminders:</b> past customers of the business get reminders for seasonal service, such as furnace tune-ups or AC check-ups.</li>
+      </ul>
+
+      <h2>Who we work for</h2>
+      <p>Our clients are plumbing and HVAC companies, from owner-operators to small crews. They pay us a monthly fee for the website and the texting tools. We do the setup and keep everything running.</p>
+
+      <h2>What we don't do</h2>
+      <ul>
+        <li>We are not a lead generation company. We do not sell, buy or share leads or contact lists.</li>
+        <li>We do not send texts to people who have not been in contact with the business or agreed to receive messages.</li>
+        <li>Every text includes a way to opt out: reply STOP to stop messages, HELP for help.</li>
+      </ul>
+      <p>Read more in our <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms of Service &amp; SMS Terms</a>.</p>
+
+      <h2>Company details</h2>
+      <p>{SITE.legalName} (trading as {SITE.name})<br />Sole proprietorship, Norway · Org. no. {SITE.orgNo}<br />{SITE.address}</p>
+      <p>Phone: <a href={`tel:${SITE.phoneHref}`}>{SITE.phoneDisplay}</a><br />Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+    </div>
+  </article>
+</Base>

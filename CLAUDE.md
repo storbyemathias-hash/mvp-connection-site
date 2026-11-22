@@ -8,14 +8,14 @@ Copy is plain American English; the user speaks Norwegian in chat.
 
 ## Stack
 - Astro 7 (static), Tailwind v4 via `@tailwindcss/vite` (`@theme` in `src/styles/global.css`, no tailwind.config)
-- React 19 via `@astrojs/react`, ONLY for the Liquid Glass logo island on /features (`client:load`)
+- React 19 via `@astrojs/react`, ONLY for the Liquid Glass logo island on /services (`client:load`)
 - three.js for the spinning 3D chrome logo on Home (lazy: first interaction or 5 s)
 - Inter Variable (@fontsource). Plausible analytics, GoHighLevel (calendar, chat, form webhook)
 - @astrojs/sitemap. Deploy target: Cloudflare Pages or Netlify (see README.md)
 
 ## Structure
 - `src/config.ts` – ALL editable content: SITE info, PILOT, PLANS, COMPARE, FAQ, TESTIMONIALS, GHL slots, Plausible domain
-- `src/pages/` – index, features, pricing, privacy, terms (legal text = owner's templates, keep wording)
+- `src/pages/` – index, services (was /features, 301 redirect), pricing, about, contact, privacy, terms (legal text = owner's templates, keep wording)
 - `src/layouts/` – `Base.astro` (header, footer, mobile call button, GHL chat script, global scripts), `Legal.astro`
 - `src/components/` – PhoneDemo, Mock, ChromeLogo3D, FeaturesHeroLogo + `liquid-glass-logo*` (ReactDrops, keep verbatim), Faq, CtaCard, Beams
 - `src/parked/` – removed pages/forms and old legal drafts, with restore steps in its README
@@ -24,6 +24,7 @@ Copy is plain American English; the user speaks Norwegian in chat.
 
 ## Fixed rules
 - Copy tone: say plainly what we sell (website + automatic texts), short sentences, contractor language, a little humor. No jargon like "retention" or "lead capture system".
+- A2P review: the site must not read as lead generation. Say "customer messages", not "leads"; keep Home, Services, About us and Contact pages.
 - No invented testimonials, stats, names, logos or customer claims. Never cite "62%". Use "Recommended", not "Most popular".
 - Colors: greyscale "Graphite" palette + ONE accent, safety orange. Hex values live only in `:root`
   (`--accent #FF6A1A`, `--accent-hover #FF8140`, `--on-accent #0B0B0B`). Use `text-accent`/`bg-accent`/`btn-accent`; never hardcode orange.
@@ -36,7 +37,7 @@ Copy is plain American English; the user speaks Norwegian in chat.
 - Respect prefers-reduced-motion / prefers-contrast; visible focus ring; body text 17px; contrast AA or better.
 - A2P 10DLC: business is Storbye MVP Connection (sole proprietorship, Norway, org. no. 938 893 586). Don't rewrite legal commitments without the owner.
 - Plausible goals via `data-goal="..."` attributes. Mobile-first, click-to-call everywhere.
-- Lighthouse 90+ target (exception accepted: /features mobile performance due to Liquid Glass on load).
+- Lighthouse 90+ target (exception accepted: /services mobile performance due to Liquid Glass on load).
 
 ## Run / build / test
 ```bash

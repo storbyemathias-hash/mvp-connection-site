@@ -26,7 +26,7 @@ const useCases = [
   { t: 'Plumbing shops', d: 'You\'re under a sink when the phone rings. The caller still hears from you right away.', icon: '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>' },
   { t: 'HVAC companies', d: 'Busy season means missed calls. Every one of them gets a reply and a way to book.', icon: '<path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/>' },
   { t: 'Owner-operators', d: 'No one in the office? It works like a front desk that never takes a lunch break.', icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>' },
-  { t: 'Small crews', d: 'Leads land on your phone, so whoever is free can call back and book.', icon: '<circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0M12 20a6 6 0 0 1 10 0"/>' },
+  { t: 'Small crews', d: 'Customer messages land on your phone, so whoever is free can call back.', icon: '<circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2 20a6 6 0 0 1 12 0M12 20a6 6 0 0 1 10 0"/>' },
 ];
 
 // "What working with us looks like"
@@ -52,14 +52,14 @@ const whyUs = [
       <div class="order-2 md:order-1">
         <p class="eyebrow hero-in">Websites &amp; automatic texting for plumbers and HVAC</p>
         <h1 class="hero-in d1 mt-5 text-[2.6rem] sm:text-6xl lg:text-[4.4rem]">
-          Missed a call? <span class="text-accent">We text them back</span> <span class="fade-tail">before they call someone else.</span>
+          Missed a call? <span class="text-accent">Your customer gets a text back</span> <span class="fade-tail">right away.</span>
         </h1>
         <p class="hero-in d2 mt-6 max-w-lg text-[1.1rem] text-muted">
-          We build your website and set up simple texts that win you more jobs: a text back when you miss a call, a Google review request after every job, and reminders that bring old customers back. All on your phone. We do the setup.
+          We build websites and customer texting for plumbing and HVAC companies: a text back when you miss a call, a Google review request after every job, and reminders that bring old customers back. All on your phone. We do the setup.
         </p>
         <div class="hero-in d3 mt-8 flex flex-wrap gap-3">
           <a href="/pricing" class="btn btn-accent">See pricing</a>
-          <a href="/features" class="btn btn-dark">How it works</a>
+          <a href="/services" class="btn btn-dark">How it works</a>
         </div>
         <p class="hero-in d4 mt-5 text-[0.95rem] text-muted">Questions? Chat with us in the bottom corner.</p>
         <p class="hero-in d4 mt-6 text-[0.9rem] text-dim">{PILOT.headline} · No contract · Keep your number</p>
@@ -104,16 +104,16 @@ const whyUs = [
     </div>
   </section>
 
-  <!-- FEATURES BENTO -->
+  <!-- SERVICES BENTO -->
   <section class="wrap py-10 md:py-16">
     <div class="text-center">
       <p class="eyebrow">What we do</p>
-      <h2 class="mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Simple tools that win more jobs. <span class="fade-tail">No tech skills needed.</span></h2>
+      <h2 class="mx-auto mt-4 max-w-3xl text-4xl md:text-[3.25rem]">Websites and customer texting. <span class="fade-tail">No tech skills needed.</span></h2>
     </div>
     <div class="mt-14 grid gap-4 md:grid-cols-2">
       <article class="card spot overflow-hidden p-6 md:p-8">
         <h3 class="text-[1.35rem]">Missed-call text-back</h3>
-        <p class="mt-2 max-w-sm text-muted">On a job and can't pick up? We text the caller back in seconds, so they wait for you instead of calling the next plumber on Google.</p>
+        <p class="mt-2 max-w-sm text-muted">On a job and can't pick up? We text the caller back in seconds, so they know their call was received.</p>
         <Mock kind="missed" class="mt-7" />
       </article>
       <article class="card spot overflow-hidden p-6 md:p-8">
@@ -125,22 +125,22 @@ const whyUs = [
     <div class="mt-4 grid gap-4 md:grid-cols-3">
       <article class="card spot overflow-hidden p-6">
         <h3 class="text-[1.15rem]">Repeat customers</h3>
-        <p class="mt-2 text-[0.95rem] text-muted">Tune-up season? Past customers get a reminder, so the next job comes to you.</p>
+        <p class="mt-2 text-[0.95rem] text-muted">Tune-up season? Your past customers get a service reminder from your company.</p>
         <Mock kind="followup" class="mt-6" />
       </article>
       <article class="card spot overflow-hidden p-6">
-        <h3 class="text-[1.15rem]">A website that gets calls</h3>
+        <h3 class="text-[1.15rem]">A website for your company</h3>
         <p class="mt-2 text-[0.95rem] text-muted">Looks good on a phone, has a big call button. We build it and host it.</p>
         <Mock kind="website" class="mt-6" />
       </article>
       <article class="card spot overflow-hidden p-6">
         <h3 class="text-[1.15rem]">Everything on your phone</h3>
-        <p class="mt-2 text-[0.95rem] text-muted">New leads show up as texts. If you can text, you can use this.</p>
+        <p class="mt-2 text-[0.95rem] text-muted">Customer messages show up as texts. If you can text, you can use this.</p>
         <Mock kind="notify" class="mt-6" />
       </article>
     </div>
     <div class="mt-10 text-center">
-      <a href="/features" class="btn btn-dark">See how each part works
+      <a href="/services" class="btn btn-dark">See our services
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
       </a>
     </div>

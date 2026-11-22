@@ -20,8 +20,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const nav = [
   { href: '/', label: 'Home' },
-  { href: '/features', label: 'Features' },
+  { href: '/services', label: 'Services' },
   { href: '/pricing', label: 'Pricing' },
+  { href: '/about', label: 'About us' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 const business = {
@@ -79,7 +81,7 @@ const phoneIcon = '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0
           ))}
         </nav>
         <div class="flex items-center gap-2">
-          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="hidden items-center gap-2 px-2 text-[0.92rem] text-text md:inline-flex">
+          <a href={`tel:${SITE.phoneHref}`} data-goal="Call Click" class="hidden items-center gap-2 px-2 text-[0.92rem] text-text lg:inline-flex">
             <svg class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" set:html={phoneIcon} />{SITE.phoneDisplay}
           </a>
           <button id="menu-btn" class="grid h-10 w-10 place-items-center rounded-full text-text md:hidden" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
